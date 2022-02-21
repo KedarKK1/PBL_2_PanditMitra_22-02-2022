@@ -1,0 +1,26 @@
+.giveBg
+{
+    background-color: bisque;
+}
+
+.myTitle
+{
+    font-size: 30px;
+    color: red;
+}
+
+.border1
+{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+.border-left1
+{
+    border-left: 1px solid black;
+}
+.border-top1
+{
+    border-top: 1px solid black;
+}
