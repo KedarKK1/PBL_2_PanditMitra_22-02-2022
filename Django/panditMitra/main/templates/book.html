@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        .card-img-top{
+            height: 9rem;
+            margin-bottom: 12px;
+        }
+        .row{
+            margin-top: 20px;
+            margin-bottom: 35px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- navbar here -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <!-- <img src="data:image/jpeg;base64,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" alt="logo" width="70" height="40" class="d-inline-block align-text-top">> -->
+          <img src="https://cdni.iconscout.com/illustration/premium/thumb/pandit-ji-2704960-2252413.png" height="40" width="70" alt="logo">
+        </a>
+        <a class="navbar-brand" href="#">
+          PanditMitra
+        </a>          
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="../">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../book/">Book Pooja/Havan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Reviews</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pandit Profiles</a>
+            </li>
+          </ul>
+          {% if user.is_authenticated %}
+          <!-- <form class="d-flex"> -->
+          <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+            <a class="nav-link d-flex">
+              <span class="text-warning" >{{user.username}}</span>
+            </a>
+            <a class="nav-link d-flex" href="logout/">
+                <button class="btn btn-outline-warning" type="submit">Logout</button>
+            </a>
+          {% else %}
+            <!-- <form class="d-flex"> -->
+            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+            <a class="nav-link d-flex" href="login/">
+                <button class="btn btn-outline-warning" type="submit">Login</button>
+            </a>
+            <a class="nav-link d-flex" href="sign-up/">
+                <button class="btn btn-outline-warning" type="submit">Sign Up</button>
+            </a>
+          {% endif %}          
+          <!-- </form> -->
+        </div>
+      </div>
+    </nav>   
+    <div class="container">
+        <div class="row">
+             <div class="col-sm-3">
+                <div class="card" style="width: 16rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><B>LAXMI PUJAN</B></h5>
+                      <img src="https://bizimages.withfloats.com/tile/60d4b6f4ce6dc70001015753.jpg" class="card-img-top" alt="...">
+                      <a href="../puja/" class="btn btn-primary">BOOK NOW</a>
+                    </div>
+                </div>
+             </div>
+             <div class="col-sm-3">
+                <div class="card" style="width: 16rem;">      
+                    <div class="card-body">
+                      <h5 class="card-title"><B>SARASWATI HAVAN</B></h5>
+                      <img src="https://www.jagranimages.com/images/newimg/29012020/29_01_2020-saraswati_19979168.jpg" class="card-img-top" alt="...">
+                      <a href="#" class="btn btn-primary">BOOK NOW</a>
+                    </div>
+                </div>
+             </div>
+             <div class="col-sm-3">
+                <div class="card" style="width: 16rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><B>DUSSEHRA</B></h5>
+                      <img src="https://cdn.shopaccino.com/rudraksha-center/products/dussehra-puja-593331_l.jpg" class="card-img-top" alt="...">
+                      <a href="#" class="btn btn-primary">BOOK NOW</a>
+                    </div>
+                  </div>
+             </div>
+             <div class="col-sm-3">
+                <div class="card" style="width: 16rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><B>SHANTI PUJA</B></h5>
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRCrTGumM9a9ju1xdv-O9jAdBgNAyWsPI9vA&usqp=CAU" class="card-img-top" alt="...">
+                      <a href="#" class="btn btn-primary">BOOK NOW</a>
+                    </div>
+                  </div>
+             </div>
+
+            <div class="col-sm-3">
+               <div class="card" style="width: 16rem;">
+                   <div class="card-body">
+                     <h5 class="card-title"><B>JANMASHTAMI PUJA</B></h5>
+                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtTXo_KkmKp0ONOjg45rLZM8R768DEK8mkGA&usqp=CAU" class="card-img-top" alt="...">
+                     <a href="#" class="btn btn-primary">BOOK NOW</a>
+                   </div>
+                 </div>
+            </div>
+            <div class="col-sm-3">
+               <div class="card" style="width: 16rem;">      
+                   <div class="card-body">
+                     <h5 class="card-title"><B>MRITYUNJAY HAVAN</B></h5>
+                     <img src="http://www.sarnam.com/images/maha1.jpg" class="card-img-top" alt="...">
+                     <a href="#" class="btn btn-primary">BOOK NOW</a>
+                   </div>
+                 </div>
+            </div>
+            <div class="col-sm-3">
+               <div class="card" style="width: 16rem;">
+                   <div class="card-body">
+                     <h5 class="card-title"><B>HOLI</B></h5>
+                     <img src="https://gumlet.assettype.com/freepressjournal/import/2018/02/holika-dahan_holi.jpg?format=webp&w=400&dpr=2.6" class="card-img-top" alt="...">
+                     <a href="#" class="btn btn-primary">BOOK NOW</a>
+                   </div>
+                 </div>
+            </div>
+            <div class="col-sm-3">
+               <div class="card" style="width: 16rem;">
+                   <div class="card-body">
+                     <h5 class="card-title"><B>SATYANARAYAN PUJA</B></h5>
+                     <img src="https://s3-eu-west-1.amazonaws.com/cdn.webfactore.co.uk/sr_955218_large.jpg" class="card-img-top" alt="...">
+                     <a href="#" class="btn btn-primary">BOOK NOW</a>
+                   </div>
+                 </div>
+            </div>
+       </div>
+    </div>
+       <!-- Footer -->
+       <footer class="text-center text-lg-start bg-warning text-muted">
+        <!-- Section: Social media -->
+        <section
+          class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+        >
+          <!-- Left -->
+          <div class="me-5 d-none d-lg-block">
+            <span style="color:red;">Get connected with us on social networks:</span>
+          </div>
+          <!-- Left -->
+      
+          <!-- Right -->
+          <div>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+      
+        <!-- Section: Links  -->
+        <section class="">
+          <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  <i class="fas fa-gem me-3"></i>Panditmitra
+                </h6>
+                <p style="color:red;">
+                  Started in 2022 Panditmitra is an initiative to help people to get pooja samagris and pandit at a single place.
+                </p>
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  Pujas
+                </h6>
+                <p style="color:red;">
+                  <a href="#!" class="text-reset">Mahalaxmi Pooja</a>
+                </p>
+                <p style="color:red;">
+                  <a href="#!" class="text-reset">Laxmi Kuber havan</a>
+                </p>
+                <p style="color:red;">
+                  <a href="#!" class="text-reset">Dusshera</a>
+                </p>
+                <!-- <p style="color:red;">
+                  <a href="#!" class="text-reset">Early Marriage/Remove Wedding Obstacles</a>
+                </p> -->
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  Main links
+                </h6>
+                <p style="color:red;">
+                  <a href="#!" class="text-reset">Login/Register</a>
+                </p>
+                <p style="color:red;">
+                  <a href="#!" class="text-reset">Temple Services</a>
+                </p>
+                <p style="color:red;">
+                  <a href="#!" class="text-reset">Orders</a>
+                </p>
+                <p style="color:red;">
+                  <a href="#!" class="text-reset">Help</a>
+                </p>
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  Contact
+                </h6>
+                <p style="color:red;"><i class="fas fa-home me-3"></i> Pune Maharashtra</p>
+                <p style="color:red;">
+                  <i class="fas fa-envelope me-3"></i>
+                  panditmitra@.com
+                </p>
+                <p style="color:red;"><i class="fas fa-phone me-3"></i> +911234567890</p>
+                <p style="color:red;"><i class="fas fa-print me-3"></i> +910987654321</p>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+          </div>
+        </section>
+        <!-- Section: Links  -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.568);">
+          © 2021 Copyright:
+          <a class="text-reset fw-bold" href="https://panditmitra.com/">Panditmitra.com</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <!-- Footer -->
+</body>
+</html>

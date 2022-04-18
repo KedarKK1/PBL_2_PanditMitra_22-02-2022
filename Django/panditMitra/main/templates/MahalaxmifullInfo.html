@@ -41,10 +41,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="../">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Book Pooja/Havan</a>
+                <a class="nav-link" href="../book/">Book Pooja/Havan</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Reviews</a>
@@ -53,14 +53,26 @@
                 <a class="nav-link" href="#">Pandit Profiles</a>
               </li>
             </ul>
-            <!-- <form class="d-flex"> -->
+            {% if user.is_authenticated %}
+              <!-- <form class="d-flex"> -->
               <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-            <a class="nav-link d-flex" href="login">
-                <button class="btn btn-outline-warning" type="submit">Login</button>
-            </a>
-            <a class="nav-link d-flex" href="sign_up">
-                <button class="btn btn-outline-warning" type="submit">Sign Up</button>
-            </a>            
+              <a class="nav-link d-flex">
+                <span class="text-warning" >{{user.username}}</span>
+
+              </a>
+              <a class="nav-link d-flex" href="logout/">
+                  <button class="btn btn-outline-warning" type="submit">Logout</button>
+              </a>
+            {% else %}
+              <!-- <form class="d-flex"> -->
+              <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+              <a class="nav-link d-flex" href="login/">
+                  <button class="btn btn-outline-warning" type="submit">Login</button>
+              </a>
+              <a class="nav-link d-flex" href="sign-up/">
+                  <button class="btn btn-outline-warning" type="submit">Sign Up</button>
+              </a>
+            {% endif %}        
             <!-- </form> -->
           </div>
         </div>
@@ -135,7 +147,7 @@
                   <option value="2">Kothrud</option>
                   <option value="3">Pimpri-Chinchawad</option>
                 </select>                
-                <button type="button" class="btn btn-success mt-2">Book pooja</button>
+                <a href="../order/" type="button" class="btn btn-success mt-2">Book pooja</a>
               </div>
             </div>
           </div>
@@ -387,7 +399,7 @@
                       <input type="text" aria-label="Last name" class="form-control">
                       <div class="input-group mt-3">
                         <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mt-3" id="basic-url" aria-describedby="basic-addon3">
                         <select class="form-select mt-3" aria-label="Default select example" required>
                           <option selected >Select Rating</option>
                           <option value="1">1</option>

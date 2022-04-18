@@ -58,7 +58,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Book Pooja</a>
+                        <a class="nav-link" href="book/">Book Pooja</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Reviews</a>
@@ -67,14 +67,25 @@
                         <a class="nav-link" href="#">Pandit Profiles</a>
                     </li>
                 </ul>
-                <!-- <form class="d-flex"> -->
-                <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                <a class="nav-link d-flex" href="logintrial.html">
-                    <button class="btn btn-outline-warning" type="submit">Login</button>
-                </a>
-                <a class="nav-link d-flex" href="signuptrial.html">
-                    <button class="btn btn-outline-warning" type="submit">Sign Up</button>
-                </a>
+                {% if user.is_authenticated %}
+                    <!-- <form class="d-flex"> -->
+                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                    <a class="nav-link d-flex">
+                        <span class="text-warning" >{{user.username}}</span>
+                    </a>
+                    <a class="nav-link d-flex" href="logout/">
+                        <button class="btn btn-outline-warning" type="submit">Logout</button>
+                    </a>
+                {% else %}
+                    <!-- <form class="d-flex"> -->
+                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                    <a class="nav-link d-flex" href="login/">
+                        <button class="btn btn-outline-warning" type="submit">Login</button>
+                    </a>
+                    <a class="nav-link d-flex" href="sign-up/">
+                        <button class="btn btn-outline-warning" type="submit">Sign Up</button>
+                    </a>
+                {% endif %}
                 <!-- </form> -->
             </div>
         </div>
@@ -89,6 +100,33 @@
         </div> -->
         <div class="row my-2 py-2">
             <div class="col-md-8">
+                
+                  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="https://static.toiimg.com/thumb/msid-65856244,imgsize-693436,width-800,height-600,resizemode-75/65856244.jpg" class="d-block w-100" alt="..." height="400">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://www.learnreligions.com/thmb/iUdGINyvfRNnCzcA7bKyMts7XbU=/1255x706/smart/filters:no_upscale()/puja2015-56a483f33df78cf77282cb9a.jpg" class="d-block w-100" alt="..." height="400">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://www.businessinsider.in/photo/71722954/how-to-do-govardhan-puja-at-home.jpg?imgsize=70471" class="d-block w-100" alt="..." height="400">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
                 <!-- <p class="text-center"><em><b>We provide online pooja booking and astrology consultancy services in
                             India.
                             Panditmitra.com has a group of best pandit and Vedic Astrologer in India. Call us for any
@@ -132,61 +170,42 @@
 
             <!-- cards here -->
             <div class="recent py-2 row">
-                <div class="col-12 col-md-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
+                <div class="col-sm-3 col-md-3">
+                    <div class="card" style="width: 16rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's
-                                content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <h5 class="card-title"><B>LAXMI PUJAN</B></h5>
+                          <img src="https://bizimages.withfloats.com/tile/60d4b6f4ce6dc70001015753.jpg" class="card-img-top" alt="...">
+                          <a href="../puja/" class="btn btn-primary">BOOK NOW</a>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-12 col-md-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
+                 </div>
+                 <div class="col-sm-3 col-md-3">
+                    <div class="card" style="width: 16rem;">      
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's
-                                content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <h5 class="card-title"><B>SARASWATI HAVAN</B></h5>
+                          <img src="https://www.jagranimages.com/images/newimg/29012020/29_01_2020-saraswati_19979168.jpg" class="card-img-top" alt="...">
+                          <a href="#" class="btn btn-primary">BOOK NOW</a>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-12 col-md-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
+                 </div>
+                 <div class="col-sm-3 col-md-3">
+                    <div class="card" style="width: 16rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's
-                                content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <h5 class="card-title"><B>DUSSEHRA</B></h5>
+                          <img src="https://cdn.shopaccino.com/rudraksha-center/products/dussehra-puja-593331_l.jpg" class="card-img-top" alt="...">
+                          <a href="#" class="btn btn-primary">BOOK NOW</a>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
+                      </div>
+                 </div>
+                 <div class="col-sm-3 col-md-3">
+                    <div class="card" style="width: 16rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's
-                                content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <h5 class="card-title"><B>SHANTI PUJA</B></h5>
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRCrTGumM9a9ju1xdv-O9jAdBgNAyWsPI9vA&usqp=CAU" class="card-img-top" alt="...">
+                          <a href="#" class="btn btn-primary">BOOK NOW</a>
                         </div>
-                    </div>
-                </div>
+                      </div>
+                 </div>
 
             </div>
         </div>
