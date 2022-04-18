@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: rgb(189, 189, 255);
+    }
+
+    form {
+      border: 3px solid #f1f1f1;
+      background-color: rgb(228, 228, 228);
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 30px;
+    }
+
+    label {
+      font-size: 30px;
+    }
+
+    button {
+      font-weight: bold;
+      font-family: monospace, sans-serif, serif;
+      font-size: 25px;
+      background-color: #4caf50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .cancelbtn {
+      width: auto;
+      padding: 10px 18px;
+      background-color: #f44336;
+    }
+
+    .profilePic {
+      text-align: center;
+      margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+
+    .formFields {
+      padding: 16px;
+    }
+
+    span.pass {
+      float: right;
+      padding-top: 16px;
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+      span.pass {
+        display: block;
+        float: none;
+      }
+
+      .cancelbtn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Login for customers/pandit</h1>
+  <form>
+    <div class="profilePic">
+      <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-
+1577909_960_720.png" alt="Avatar" class="avatar" />
+    </div>
+    <div class="formFields">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required />
+      <label for="pass"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="pass" required />
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember" /> Remember
+        me
+      </label>
+    </div>
+    <div class="formFields" style="background-color:#f1f1f1">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <span class="pass">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</body>
+
+</html>
