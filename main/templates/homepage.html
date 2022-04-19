@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PanditMitra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <style>
+        .recent {
+
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 15px;
+            border-color: black;
+        }
+
+
+        .recent div:hover {
+            transform: scale(1.1);
+        }
+    </style>
+
+
+
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://cdni.iconscout.com/illustration/premium/thumb/pandit-ji-2704960-2252413.png"
+                    alt="logo" width="70" height="40" class="d-inline-block align-text-top">
+            </a>
+            <a class="navbar-brand" href="#">
+                PanditMitra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="book/">Book Pooja</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pandit Profiles</a>
+                    </li>
+                </ul>
+                {% if user.is_authenticated %}
+                    <!-- <form class="d-flex"> -->
+                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                    <a class="nav-link d-flex">
+                        <span class="text-warning" >{{user.username}}</span>
+                    </a>
+                    <a class="nav-link d-flex" href="logout/">
+                        <button class="btn btn-outline-warning" type="submit">Logout</button>
+                    </a>
+                {% else %}
+                    <!-- <form class="d-flex"> -->
+                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                    <a class="nav-link d-flex" href="login/">
+                        <button class="btn btn-outline-warning" type="submit">Login</button>
+                    </a>
+                    <a class="nav-link d-flex" href="sign-up/">
+                        <button class="btn btn-outline-warning" type="submit">Sign Up</button>
+                    </a>
+                {% endif %}
+                <!-- </form> -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <!-- container and carousel/images -->
+        <!-- text -->
+
+        <!-- <div class="row"><img src="https://shaligram.com/product-img/Divine_Blessing_Pooja-OPS-7-33-ZOOM.jpg"
+                width="250px" height="480px">
+        </div> -->
+        <div class="row my-2 py-2">
+            <div class="col-md-8">
+                
+                  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="https://static.toiimg.com/thumb/msid-65856244,imgsize-693436,width-800,height-600,resizemode-75/65856244.jpg" class="d-block w-100" alt="..." height="400">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://www.learnreligions.com/thmb/iUdGINyvfRNnCzcA7bKyMts7XbU=/1255x706/smart/filters:no_upscale()/puja2015-56a483f33df78cf77282cb9a.jpg" class="d-block w-100" alt="..." height="400">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://www.businessinsider.in/photo/71722954/how-to-do-govardhan-puja-at-home.jpg?imgsize=70471" class="d-block w-100" alt="..." height="400">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                <!-- <p class="text-center"><em><b>We provide online pooja booking and astrology consultancy services in
+                            India.
+                            Panditmitra.com has a group of best pandit and Vedic Astrologer in India. Call us for any
+                            customised pooja &
+                            astrological consultation.</p></b></em>
+                <p>Panditmitra is the India’s 1st and most trusted online pooja booking platform for Hindu pooja
+                    service,
+                    Vedic
+                    Rituals, Religious Ceremonies and Astrology Services. We provide the India’s well-known, highly
+                    qualified and
+                    experienced Shastries and Pandits for you who will come to your house and do the pooja. Our services
+                    also
+                    include online pooja samagri or pooja items.</p>
+                <p>Panditmitra covers major rituals that include the Hawan, Shant Vidhi, Shubh Vivah – Wedding ceremony,
+                    Satyanarayan Katha, Griha pravesh, Namkaran Sanskar or naming ceremony, Nava Graha Shant,
+                    Vangnischaya
+                    or
+                    Sakharpude or engagement, Laxmi Pooja, thread ceremony or Maunji Bandhan, Ganesh Pooja, Annaprashan,
+                    Ramayan,
+                    Mundan, Bhagwat katha, Vastu Shant, Sunderkand Pooja, Janan Shant etc.</p>
+                You will also find lots of knowledge and details on Hindu rituals on this website. So if you are looking
+                for
+                online pandit ji or want to have pooja at your place then book your pooja now!!</p>
+             -->
+            
+             <p class="text-center"><em><b>We provide online pooja booking and astrology consultancy services in India. Panditmitra.com has a group of best pandit and Vedic Astrologer in India. Call us for any customised pooja & astrological consultation.</p></b></em>
+             <p>Panditmitra is the most trusted online pooja booking platform for Hindu pooja service, Vedic Rituals, Religious Ceremonies and Astrology Services. We provide the India’s well-known and experienced Pandits and Shastris for you who will come to your house and do the pooja. We also provide temple services. Our services also include online pooja samagri or pooja items which are required for the selected pooja.</p>
+             <p>Panditmitra covers major rituals that include the Havan, Shanti Vidhi, Wedding Ceremony, Satyanarayan Katha, Griha pravesh, Namkaran Sanskar or naming ceremony, Nava Graha Shanti, Sakharpude or engagement, Laxmi Pooja, thread ceremony or Maunji Bandhan, Ganesh Pooja, Annaprashan, Ramayan, Mundan, Bhagwat katha, Vastu Shanti Pooja, Holika Pooja, Dusshera Pooja etc.</p>
+             <p>We also provide the best devotional offering made to God<em>(Prasad)</em>.</p>
+             You will also get to know more about the pooja you have selected from the website and about the Hindu rituals on this website. So if you are looking for online pandit ji or want to have pooja at your place then book your pooja NOW!!</p>
+        
+
+
+
+            </div>
+
+            <div class="col-md-4 py-2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1wnvLKRV8FovEUrWGARJpV6uIx8donj7Gw&usqp=CAU"
+                    width="390" height="350px">
+            </div>
+
+            <!-- cards here -->
+            <div class="recent py-2 row">
+                <div class="col-sm-3 col-md-3">
+                    <div class="card" style="width: 16rem;">
+                        <div class="card-body">
+                          <h5 class="card-title"><B>LAXMI PUJAN</B></h5>
+                          <img src="https://bizimages.withfloats.com/tile/60d4b6f4ce6dc70001015753.jpg" class="card-img-top" alt="...">
+                          <a href="../puja/" class="btn btn-primary">BOOK NOW</a>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="col-sm-3 col-md-3">
+                    <div class="card" style="width: 16rem;">      
+                        <div class="card-body">
+                          <h5 class="card-title"><B>SARASWATI HAVAN</B></h5>
+                          <img src="https://www.jagranimages.com/images/newimg/29012020/29_01_2020-saraswati_19979168.jpg" class="card-img-top" alt="...">
+                          <a href="#" class="btn btn-primary">BOOK NOW</a>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="col-sm-3 col-md-3">
+                    <div class="card" style="width: 16rem;">
+                        <div class="card-body">
+                          <h5 class="card-title"><B>DUSSEHRA</B></h5>
+                          <img src="https://cdn.shopaccino.com/rudraksha-center/products/dussehra-puja-593331_l.jpg" class="card-img-top" alt="...">
+                          <a href="#" class="btn btn-primary">BOOK NOW</a>
+                        </div>
+                      </div>
+                 </div>
+                 <div class="col-sm-3 col-md-3">
+                    <div class="card" style="width: 16rem;">
+                        <div class="card-body">
+                          <h5 class="card-title"><B>SHANTI PUJA</B></h5>
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRCrTGumM9a9ju1xdv-O9jAdBgNAyWsPI9vA&usqp=CAU" class="card-img-top" alt="...">
+                          <a href="#" class="btn btn-primary">BOOK NOW</a>
+                        </div>
+                      </div>
+                 </div>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-warning text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span style="color:red;">Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+
+            <!-- Right -->
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Panditmitra
+                        </h6>
+                        <p style="color:red;">
+                            Started in 2022 Panditmitra is an initiative to help people to get pooja samagris and pandit
+                            at a single
+                            place.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Pujas
+                        </h6>
+                        <p style="color:red;">
+                            <a href="#!" class="text-reset">Health Problems</a>
+                        </p>
+                        <p style="color:red;">
+                            <a href="#!" class="text-reset">Sarpa Dosha Pooja</a>
+                        </p>
+                        <p style="color:red;">
+                            <a href="#!" class="text-reset">Property/Legal/Court Cases</a>
+                        </p>
+                        <p style="color:red;">
+                            <a href="#!" class="text-reset">Early Marriage/Remove Wedding Obstacles</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Main links
+                        </h6>
+                        <p style="color:red;">
+                            <a href="#!" class="text-reset">Login/Register</a>
+                        </p>
+                        <p style="color:red;">
+                            <a href="#!" class="text-reset">Temple Services</a>
+                        </p>
+                        <p style="color:red;">
+                            <a href="#!" class="text-reset">Orders</a>
+                        </p>
+                        <p style="color:red;">
+                            <a href="#!" class="text-reset">Help</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Contact
+                        </h6>
+                        <p style="color:red;"><i class="fas fa-home me-3"></i> Pune Maharashtra</p>
+                        <p style="color:red;">
+                            <i class="fas fa-envelope me-3"></i>
+                            panditmitra@.com
+                        </p>
+                        <p style="color:red;"><i class="fas fa-phone me-3"></i> +911234567890</p>
+                        <p style="color:red;"><i class="fas fa-print me-3"></i> +910987654321</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.568);">
+            © 2021 Copyright:
+            <a class="text-reset fw-bold" href="https://panditmitra.com/">Panditmitra.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+</body>
+
+</html>

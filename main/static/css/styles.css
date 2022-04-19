@@ -1,0 +1,74 @@
+.login{
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(#e66465, #cfe591);
+    padding-top: 20px;
+    /* margin: auto; */
+}
+
+form{
+    border: 3px solid #f1f1f1;
+}
+
+.h1class{
+    text-align: center;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"]{
+    width: 100%;
+    padding: 12px, 20px;
+    margin: 8px;
+    /* display: inline-block; */
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 30px;
+}
+
+.login-label{
+    font-size: 30px;
+}
+
+.login-button{
+    font-weight: bold;
+    font-family: monospace, sans-serif, serif;
+    font-size: 25px;
+    background-color: #4caf50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.login-button:hover{
+    opacity: 0.5;
+}
+
+.formfields{
+    padding: 16px;
+}
+
+.pass{
+    float: right;
+    padding-top: 16px;
+}
+
+.cancelbtn{
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.profilePic{
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
