@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
-from .models import Puja, Order
+from .models import *
 
 # Create your views here.
 
@@ -74,25 +74,34 @@ def order(request):
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         gender = request.POST['optradio']
-        password2 = request.POST['pass2']
+        dateOfPuja = request.POST['birthdaytime']
+        # print(gender)
         address1 = request.POST['address1']
         address2 = request.POST['address2']
         city = request.POST['city']
         state = request.POST['state']
         zip = request.POST['zip']
         address = address1 + ' ' + address2 + ' ' + city + ' ' + state + ' ' + zip
-
-        #pujaName = models.ForeignKey(Puja, on_delete=models.CASCADE)
+        # print(address)
+        total = '1000'
+        email = User.objects.get(username=request.user.username).email
+        # print(email)
+        pujaName = Puja.objects.get(id=1)
+        mobile_no = request.POST['MobNo']
         #mobile_no = models.CharField(max_length=15)
         # phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
         # phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True) # Validators should be a list
-        #dateOfPuja = models.DateTimeField()
-        #total_pay = models.CharField(max_length=50)
         myOrder = Order.objects.create(
-            first_name=first_name, last_name=last_name, address=address, )
-        return render(request, '../')
+            first_name=first_name, last_name=last_name, mobile_no=mobile_no, pujaName=pujaName, dateOfPuja=dateOfPuja, address=address, email=email, total_pay=total)
+        myOrder.save()
+        messages.info(request, 'Order successfully created')
+        return redirect("/order")
     else:
-        return render(request, "order.html", {})
+        # email = User.objects.get(username=request.user.username).email
+        # print(email)
+        myPuja = Puja.objects.all()
+        # print(myPuja)
+        return render(request, "order.html", {"myPuja": myPuja})
 
 
 @login_required

@@ -106,12 +106,12 @@
                             </div>
                         
                               <div class="col-md-6">
-                                <label for="inputEmail4" class="form-label">Email</label>
-                                <input name="email" type="email" class="form-control" id="inputEmail4">
+                                <label for="birthdaytime" class="form-label">Date and Time</label>
+                                <input type="datetime-local" id="birthdaytime" name="birthdaytime" class="form-control" id="birthdaytime">
                               </div>
                               <div class="col-md-6">
-                                <label for="inputPassword4" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword4">
+                                <label for="MobNo" class="form-label">Mob no</label>
+                                <input type="number" class="form-control" id="MobNo" name="MobNo">
                               </div>
                               <div class="col-12">
                                 <label for="inputAddress" class="form-label">Address</label>
@@ -180,39 +180,44 @@
                                 </div>
                               </div>
 
-                            </form>
-                     
-                    </div>
+                              
+                            </div>
                   </div>
             </div>
-
+            
             <!-- 2nd card start -->
             <div class="col-12 col-md-6" style="width: 18rem;">
-
+              
                 <div class="card" style="width: 18rem;">
-
-                    <div class="card-body">
-                      <h5 class="card-title">Your Order</h5>
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Pooja Name</th>
-                            <th scope="col">Total</th>
-
-                          </tr>
-                        </thead>
+                  
+                  <div class="card-body">
+                    <h5 class="card-title">Your Order</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Pooja Name</th>
+                          <th scope="col">Total</th>
+                          
+                        </tr>
+                      </thead>
                         <tbody>
+                          <!-- {% for puja in myPuja %}
+                          <tr>
+                            <td scope="row">{{puja}}</td>
+                            <td>₹1001/-</td>
+                          </tr>
+                          {% endfor %} -->
                           <tr>
                             <td scope="row">Satyanarayan Pooja</td>
                             <td>₹1001/-</td>
                           </tr>
                           <tr>
                             <td scope="row">City:Pune</td>
-
+                            
                           </tr>
                           <tr>
                             <td scope="row">Date and Time:</td>
-
+                            
                           </tr>
                           <tr>
                             <td scope="row">Transaction Fee:</td>
@@ -224,7 +229,15 @@
                           </tr>
                         </tbody>
                       </table>
-                      <a href="#" class="btn btn-primary" style="background-color: coral">Place Order</a>
+                      <button type="submit" class="btn btn-primary" style="background-color: coral">Place Order</button>
+                    </form>
+                    <div>
+
+                      {% for message in messages %}
+                      {{message}}
+                      {% endfor %}
+            
+                    </div>
                     </div>
                   </div>
             </div>
