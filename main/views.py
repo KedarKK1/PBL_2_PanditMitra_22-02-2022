@@ -64,13 +64,17 @@ def book(response):
     return render(response, "book.html", {})
 
 
-def puja(response):
-    return render(response, "MahalaxmifullInfo.html", {})
+def puja(response, id):
+    ls = Puja.objects.get(id=id)
+    ls = ls.nameOfPuja
+    return render(response, "MahalaxmifullInfo.html", {"myPuja": ls})
 
 
 @login_required
-def order(request):
+def order(request, id):
     if request.method == 'POST':
+        # ls = Puja.objects.get(id=id)
+        # ls = ls.nameOfPuja
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         gender = request.POST['optradio']
@@ -81,12 +85,12 @@ def order(request):
         city = request.POST['city']
         state = request.POST['state']
         zip = request.POST['zip']
-        address = address1 + ' ' + address2 + ' ' + city + ' ' + state + ' ' + zip
+        address = address1 + ', ' + address2 + ', ' + city + ', ' + state + ', ' + zip
         # print(address)
         total = '1000'
         email = User.objects.get(username=request.user.username).email
         # print(email)
-        pujaName = Puja.objects.get(id=1)
+        pujaName = Puja.objects.get(id=id)
         mobile_no = request.POST['MobNo']
         #mobile_no = models.CharField(max_length=15)
         # phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
@@ -95,13 +99,15 @@ def order(request):
             first_name=first_name, last_name=last_name, mobile_no=mobile_no, pujaName=pujaName, dateOfPuja=dateOfPuja, address=address, email=email, total_pay=total)
         myOrder.save()
         messages.info(request, 'Order successfully created')
-        return redirect("/order")
+        return redirect("/")
     else:
         # email = User.objects.get(username=request.user.username).email
         # print(email)
         myPuja = Puja.objects.all()
         # print(myPuja)
-        return render(request, "order.html", {"myPuja": myPuja})
+        ls = Puja.objects.get(id=id)
+        ls = ls.nameOfPuja
+        return render(request, "order.html", {"myPuja": myPuja, "myPuja": ls})
 
 
 @login_required

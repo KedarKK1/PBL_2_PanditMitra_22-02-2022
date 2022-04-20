@@ -3,10 +3,19 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+# class pandit(models.Model):
+#   id = models.AutoField(primary_key=True)
+#   name = models.CharField(max_length=50)
+#   experience = models.CharFiels(max_length=50)
+#   expertiseIn = models.CharFiels(max_length=200)
+
 
 class Puja(models.Model):
     id = models.AutoField(primary_key=True)
     nameOfPuja = models.CharField(max_length=50, unique=True)
+    # price = models.CharField(max_length=50)
+    # panditName = models.CharField(max_length=50)
+    # categories pooja, havan, homeshanti
 
     def __str__(self):
         return self.nameOfPuja
