@@ -110,6 +110,10 @@ def order(request, id):
         return render(request, "order.html", {"myPuja": myPuja, "myPuja": ls})
 
 
+def pandit(response):
+    return render(response, "pandit.html", {})
+
+
 @login_required
 def logout(request):
     auth.logout(request)

@@ -41,16 +41,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="../">Home</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'book' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../book/">Book Pooja/Havan</a>
+                <a class="nav-link" href="{% url 'book' %}">Book Pooja/Havan</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Reviews</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pandit Profiles</a>
+                <a class="nav-link" href="{% url 'pandit' %}">Pandit Profiles</a>
               </li>
             </ul>
             {% if user.is_authenticated %}
@@ -60,16 +60,16 @@
                 <span class="text-warning" >{{user.username}}</span>
 
               </a>
-              <a class="nav-link d-flex" href="logout/">
+              <a class="nav-link d-flex" href="{% url 'logout' %}">
                   <button class="btn btn-outline-warning" type="submit">Logout</button>
               </a>
             {% else %}
               <!-- <form class="d-flex"> -->
               <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-              <a class="nav-link d-flex" href="login/">
+              <a class="nav-link d-flex" href="{% url 'login' %}">
                   <button class="btn btn-outline-warning" type="submit">Login</button>
               </a>
-              <a class="nav-link d-flex" href="sign-up/">
+              <a class="nav-link d-flex" href="{% url 'sign_Up' %}">
                   <button class="btn btn-outline-warning" type="submit">Sign Up</button>
               </a>
             {% endif %}        
