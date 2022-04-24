@@ -1,25 +1,49 @@
 from django.db import models
 from django.contrib.auth.models import User
+from jsonschema import ValidationError
+from django import forms
 
 # Create your models here.
 
-# class pandit(models.Model):
-#   id = models.AutoField(primary_key=True)
-#   name = models.CharField(max_length=50)
-#   experience = models.CharFiels(max_length=50)
-#   expertiseIn = models.CharFiels(max_length=200)
+
+def minMax(value):
+    if(value < 0 or value > 90):
+        raise ValidationError(
+            ('Value must be between 0 and 90'), param={'value': value},)
+
+
+def minMax2(value):
+    if(value < 0 or value > 100000):
+        raise ValidationError(
+            ('Value must be between 0 and 1lakh'), param={'value': value},)
 
 
 class Puja(models.Model):
     id = models.AutoField(primary_key=True)
     nameOfPuja = models.CharField(max_length=50, unique=True)
-    # price = models.CharField(max_length=50)
-    # panditName = models.CharField(max_length=50)
-    # categories pooja, havan, homeshanti
+    price = models.IntegerField(default=0, validators=[minMax2])
+    panditName = models.CharField(max_length=50, blank=True)
+    # categories (Remove Late marriage/Wedding Obstacles) Puja,(Property/Legal/Court Cases) Shanti Puja,Sarpa Dosha Pooja,Swastha Sampanna Puja,Dussera,Laxmi Kubera,Mahalaxmi
 
     def __str__(self):
         return self.nameOfPuja
         # return "{}.{}".format(self.id, self.nameOfPuja)
+
+
+class Pandit(models.Model):
+    id = models.AutoField(primary_key=True)
+    imageUrl = models.TextField(verbose_name="Pandit Img Url", max_length=2000)
+    # imageUrl = models.URLField(verbose_name="Pandit Img Url", max_length=2000)
+    # nameOfPandit = models.ForeignKey(Puja, blank=True)
+    nameOfPandit = models.CharField(max_length=50)
+    experience = models.IntegerField(default=0, validators=[minMax])
+    # pujaName = models.ForeignKey(Puja, on_delete=models.CASCADE)
+    # expertiseIn = forms.ChoiceField(
+    #     choices=expertise_choices, widget=forms.RadioSelect())
+#   expertiseIn = models.CharFiels(max_length=200) fields add karni hai
+
+    def __str__(self):
+        return self.nameOfPandit
 
 
 class Order(models.Model):
@@ -36,6 +60,8 @@ class Order(models.Model):
     address = models.TextField()
     dateOfPuja = models.DateTimeField()
     total_pay = models.CharField(max_length=50)
+    bookingDoneAt = models.CharField(max_length=50)
+    # time of request of order
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.pujaName} {self.dateOfPuja} {self.address}"
+        return f"{self.first_name} {self.last_name} - {self.pujaName} on {self.dateOfPuja} at {self.address}"

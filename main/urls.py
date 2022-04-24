@@ -11,5 +11,6 @@ urlpatterns = [
     # path("puja/", views.puja, name="puja"),
     path("puja/<int:id>/", views.puja, name="puja"),
     path("puja/<int:id>/order/", views.order, name="order"),
+    path("aboutUs/", views.aboutUs, name="aboutUs"),
     path("logout/", views.logout, name="logout"),
 ]

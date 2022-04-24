@@ -10,69 +10,172 @@
 
 </head>
 <body>
+    <!-- navbar here -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="https://cdni.iconscout.com/illustration/premium/thumb/pandit-ji-2704960-2252413.png"
-                    alt="logo" width="70" height="40" class="d-inline-block align-text-top">
-            </a>
-            <a class="navbar-brand" href="#">
-                PanditMitra
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="book/">Book Pooja</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Reviews</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pandit Profiles</a>
-                    </li>
-                </ul>
-                {% if user.is_authenticated %}
-                    <!-- <form class="d-flex"> -->
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                    <a class="nav-link d-flex">
-                        <span class="text-warning" >{{user.username}}</span>
-                    </a>
-                    <a class="nav-link d-flex" href="logout/">
-                        <button class="btn btn-outline-warning" type="submit">Logout</button>
-                    </a>
-                {% else %}
-                    <!-- <form class="d-flex"> -->
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                    <a class="nav-link d-flex" href="login/">
-                        <button class="btn btn-outline-warning" type="submit">Login</button>
-                    </a>
-                    <a class="nav-link d-flex" href="sign-up/">
-                        <button class="btn btn-outline-warning" type="submit">Sign Up</button>
-                    </a>
-                {% endif %}
-                <!-- </form> -->
-            </div>
-        </div>
-    </nav>
+          <a class="navbar-brand" href="#">
+            <img src="https://cdni.iconscout.com/illustration/premium/thumb/pandit-ji-2704960-2252413.png" height="40" width="70" alt="logo">
+          </a>
+          <a class="navbar-brand" href="{% url 'home' %}">
+            PanditMitra
+          </a>          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'book' %}">Book Pooja/Havan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Reviews</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'pandit' %}">Pandit Profiles</a>
+              </li>
+            </ul>
+            {% if user.is_authenticated %}
+              <!-- <form class="d-flex"> -->
+              <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+              <a class="nav-link d-flex">
+                <span class="text-warning" >{{user.username}}</span>
 
-    <div class="container-fluid">
+              </a>
+              <a class="nav-link d-flex" href="{% url 'logout' %}">
+                  <button class="btn btn-outline-warning" type="submit">Logout</button>
+              </a>
+            {% else %}
+              <!-- <form class="d-flex"> -->
+              <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+              <a class="nav-link d-flex" href="{% url 'login' %}">
+                  <button class="btn btn-outline-warning" type="submit">Login</button>
+              </a>
+              <a class="nav-link d-flex" href="{% url 'sign_Up' %}">
+                  <button class="btn btn-outline-warning" type="submit">Sign Up</button>
+              </a>
+            {% endif %}        
+            <!-- </form> -->
+          </div>
+        </div>
+      </nav> 
+
+    <div class="container-fluid my-2">
         <div class="row">
 
-            <div class="col-md-4">
-                
+            <div class="col-md-3 my-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header bg-secondary">
+                      Featured
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Pooja</li>
+                      <li class="list-group-item">Havan</li>
+                      <li class="list-group-item">Home Havan</li>
+                    </ul>
+                  </div>
             </div>
 
-            <div class="col-md-8">
-                Hi
+            <div class="col-md-9 my-3">
+                <div class="row">
+                    <div class="col-md-4 my-1">
+                        <!-- card 1 starts here -->
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="data:image/jpeg;base64,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" alt="Card image cap" style="max-height:12rem;">
+                            <div class="card-body">
+                              <h5 class="card-title">1. Siddharth Pandit</h5>
+                              <p class="card-text">One of the most experienced, popular and successful pandit of Pune.</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Expertise In: Puja, Home Havan</li>
+                              <li class="list-group-item">Experience: 25 years</li>
+                            </ul>
+                            <!-- <div class="card-body">
+                              <a href="#" class="card-link">Card link</a>
+                              <a href="#" class="card-link">Another link</a>
+                            </div> -->
+                          </div>
+                        </div>
+                          <!-- card 1 ends here -->
+                          <!-- card 1 starts here -->
+                          <!-- {% for pandits in panditList %}
+                        <div class="card" style="width: 18rem;">
+                          <img class="card-img-top" src={{pandits.imageUrl}} alt="Card image cap" style="max-height:12rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">{{forloop.counter}}. {{pandits.nameOfPandit}}</h5>
+                            <p class="card-text">One of the most experienced, popular and successful pandit of Pune.</p>
+                          </div>
+                          <ul class="list-group list-group-flush">
+                              <li class="list-group-item">Expertise In: Puja, Home Havan</li>
+                            <li class="list-group-item">Experience: {{pandits.experience}} years</li>
+                          </ul>
+                        </div>
+                      {% endfor %} -->
+                        <!-- card 1 ends here -->
+                        <div class="col-md-4 my-1">
+                          <!-- card 2 starts here -->
+                          <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="https://c8.alamy.com/comp/MEW81M/posed-portrait-of-a-hindu-priest-or-pandit-at-the-shri-lakshmi-narayan-mandir-temple-in-richmond-hill-queens-new-york-MEW81M.jpg" alt="Card image cap" style="max-height:12rem;">
+                            <div class="card-body">
+                              <h5 class="card-title">2. Jitendra Shashtri</h5>
+                              <p class="card-text">"We couldn't find a suitable exorcist than Mr. Jitendra Shashtri. Thanks PanditMitra."</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Expertise In: Extorsism</li>
+                              <li class="list-group-item">Experience: 15 years</li>
+                            </ul>
+                            <!-- <div class="card-body">
+                              <a href="#" class="card-link">Card link</a>
+                              <a href="#" class="card-link">Another link</a>
+                            </div> -->
+                          </div>
+                          <!-- card 2 ends here -->
+                        </div>
+                        <div class="col-md-4 my-1">
+                            <!-- card 3 starts here -->
+                            <div class="card" style="width: 18rem;">
+                              <img class="card-img-top" src="https://media.istockphoto.com/photos/portrait-of-a-hindu-temple-priest-picture-id1142366343" alt="Card image cap" style="max-height:12rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">3. Suresh Mishra</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              </div>
+                              <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">Expertise In: Marriage related Pujas, Health related Pujas</li>
+                                <li class="list-group-item">Experience: 5 years</li>
+                              </ul>
+                              <!-- <div class="card-body">
+                                <a href="#" class="card-link">Card link</a>
+                                <a href="#" class="card-link">Another link</a>
+                              </div> -->
+                            </div>
+                            <!-- card 3 ends here -->
+                        </div>
+                        <div class="col-md-4 my-1">
+                            <!-- card 4 starts here -->
+                            <div class="card" style="width: 18rem;">
+                              <img class="card-img-top" src="https://hindupriestketuljoshi.co.uk/wp-content/uploads/2021/02/Wedding-priest-Hindu-wedding-priest-hindu-priest-in-uk-3-1.jpeg" alt="Card image cap" style="max-height:12rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">4. Paritosh Maheshwari</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              </div>
+                              <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">Expertise In: Hindu Festival's related Pujas</li>
+                                <li class="list-group-item">Experience: 15 years</li>
+                              </ul>
+                              <!-- <div class="card-body">
+                                <a href="#" class="card-link">Card link</a>
+                                <a href="#" class="card-link">Another link</a>
+                              </div> -->
+                            </div>
+                            <!-- card 3 ends here -->
+                        </div>
+                </div>
+
             </div>
+
+
         </div>
     </div>
 

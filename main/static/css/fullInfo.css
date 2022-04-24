@@ -1,0 +1,23 @@
+body{
+    padding:0;
+    margin:0;
+}
+.myTitle
+{
+    color: crimson;
+    /* border-bottom: 3px solid purple; */
+    border-bottom: 3px solid crimson;
+    font-size: 30px;
+}
+
+.border1{
+    border:1px solid black;
+}
+
+.border-top1{
+    border-top: 1px solid black;
+}
+
+.border-left1{
+    border-left: 1px solid black;
+}
