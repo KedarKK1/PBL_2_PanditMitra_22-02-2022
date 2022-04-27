@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from jsonschema import ValidationError
 from django import forms
+from django.utils.timezone import now
 
 # Create your models here.
 
@@ -18,11 +19,19 @@ def minMax2(value):
             ('Value must be between 0 and 1lakh'), param={'value': value},)
 
 
+def minMax3(value):
+    if(value < 0 or value > 5):
+        raise ValidationError(
+            ('Value must be between 0 and 5'), param={'value': value},)
+
+
 class Puja(models.Model):
     id = models.AutoField(primary_key=True)
     nameOfPuja = models.CharField(max_length=50, unique=True)
     price = models.IntegerField(default=0, validators=[minMax2])
     panditName = models.CharField(max_length=50, blank=True)
+    # imageURL textfield
+    
     # categories (Remove Late marriage/Wedding Obstacles) Puja,(Property/Legal/Court Cases) Shanti Puja,Sarpa Dosha Pooja,Swastha Sampanna Puja,Dussera,Laxmi Kubera,Mahalaxmi
 
     def __str__(self):
@@ -61,7 +70,22 @@ class Order(models.Model):
     dateOfPuja = models.DateTimeField()
     total_pay = models.CharField(max_length=50)
     bookingDoneAt = models.CharField(max_length=50)
+    # bookingDoneAt = models.DateTimeField(auto_now_add=True,null=True)
     # time of request of order
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.pujaName} on {self.dateOfPuja} at {self.address}"
+
+
+class Reviews(models.Model):
+    id = models.AutoField(primary_key=True)
+    fullName = models.CharField(max_length=50)
+    pujaName = models.ForeignKey(Puja, on_delete=models.CASCADE)
+    email = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, blank=True)
+    reviewText = models.TextField(verbose_name='Reviews Text')
+    created_date = models.DateTimeField(default=now, editable=False)
+    yourRating = models.IntegerField(default=0, validators=[minMax3])
+    
+    def __str__(self):
+        return f"{self.created_date} {self.pujaName} {self.yourRating} stars {self.fullName}"

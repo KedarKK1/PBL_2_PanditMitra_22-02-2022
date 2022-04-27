@@ -56,10 +56,21 @@
               <a class="nav-link active" href="{% url 'book' %}">Book Pooja/Havan</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Reviews</a>
+                <a class="nav-link" href="{% url 'aboutUs' %}">About Us</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'myOrders' %}">My orders</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'pandit' %}">Pandit Profiles</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'aboutUs' %}">About Us</a>
             </li>
           </ul>
           {% if user.is_authenticated %}
@@ -87,80 +98,91 @@
     </nav>   
     <div class="container">
         <div class="row">
-             <div class="col-sm-3">
+              <!-- <div class="col-sm-3 my-1">
+                  <div class="card" style="width: 16rem;">
+                      <div class="card-body">
+                        <h5 class="card-title"><B>LAXMI PUJAN</B></h5>
+                        <img src="https://bizimages.withfloats.com/tile/60d4b6f4ce6dc70001015753.jpg" class="card-img-top" alt="...">
+                        <a href="../puja/1" class="btn btn-primary">BOOK NOW</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="card" style="width: 16rem;">      
+                      <div class="card-body">
+                        <h5 class="card-title"><B>SARASWATI HAVAN</B></h5>
+                        <img src="https://www.jagranimages.com/images/newimg/29012020/29_01_2020-saraswati_19979168.jpg" class="card-img-top" alt="...">
+                        <a href="#" class="btn btn-primary">BOOK NOW</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="card" style="width: 16rem;">
+                      <div class="card-body">
+                        <h5 class="card-title"><B>DUSSEHRA</B></h5>
+                        <img src="https://cdn.shopaccino.com/rudraksha-center/products/dussehra-puja-593331_l.jpg" class="card-img-top" alt="...">
+                        <a href="#" class="btn btn-primary">BOOK NOW</a>
+                      </div>
+                    </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="card" style="width: 16rem;">
+                      <div class="card-body">
+                        <h5 class="card-title"><B>SHANTI PUJA</B></h5>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRCrTGumM9a9ju1xdv-O9jAdBgNAyWsPI9vA&usqp=CAU" class="card-img-top" alt="...">
+                        <a href="#" class="btn btn-primary">BOOK NOW</a>
+                      </div>
+                    </div>
+              </div>
+
+              <div class="col-sm-3">
                 <div class="card" style="width: 16rem;">
                     <div class="card-body">
-                      <h5 class="card-title"><B>LAXMI PUJAN</B></h5>
-                      <img src="https://bizimages.withfloats.com/tile/60d4b6f4ce6dc70001015753.jpg" class="card-img-top" alt="...">
-                      <a href="../puja/1" class="btn btn-primary">BOOK NOW</a>
+                      <h5 class="card-title"><B>JANMASHTAMI PUJA</B></h5>
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtTXo_KkmKp0ONOjg45rLZM8R768DEK8mkGA&usqp=CAU" class="card-img-top" alt="...">
+                      <a href="#" class="btn btn-primary">BOOK NOW</a>
                     </div>
-                </div>
-             </div>
-             <div class="col-sm-3">
+                  </div>
+              </div>
+              <div class="col-sm-3">
                 <div class="card" style="width: 16rem;">      
                     <div class="card-body">
-                      <h5 class="card-title"><B>SARASWATI HAVAN</B></h5>
-                      <img src="https://www.jagranimages.com/images/newimg/29012020/29_01_2020-saraswati_19979168.jpg" class="card-img-top" alt="...">
+                      <h5 class="card-title"><B>MRITYUNJAY HAVAN</B></h5>
+                      <img src="http://www.sarnam.com/images/maha1.jpg" class="card-img-top" alt="...">
                       <a href="#" class="btn btn-primary">BOOK NOW</a>
                     </div>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card" style="width: 16rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><B>HOLI</B></h5>
+                      <img src="https://gumlet.assettype.com/freepressjournal/import/2018/02/holika-dahan_holi.jpg?format=webp&w=400&dpr=2.6" class="card-img-top" alt="...">
+                      <a href="#" class="btn btn-primary">BOOK NOW</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card" style="width: 16rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><B>SATYANARAYAN PUJA</B></h5>
+                      <img src="https://s3-eu-west-1.amazonaws.com/cdn.webfactore.co.uk/sr_955218_large.jpg" class="card-img-top" alt="...">
+                      <a href="#" class="btn btn-primary">BOOK NOW</a>
+                    </div>
+                  </div>
+              </div> -->
+              
+              {% for item in items %}
+              <div class="card my-1 py-2" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ forloop.counter }}. {{item.nameOfPuja}}</h5>
+                  <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 </div>
-             </div>
-             <div class="col-sm-3">
-                <div class="card" style="width: 16rem;">
-                    <div class="card-body">
-                      <h5 class="card-title"><B>DUSSEHRA</B></h5>
-                      <img src="https://cdn.shopaccino.com/rudraksha-center/products/dussehra-puja-593331_l.jpg" class="card-img-top" alt="...">
-                      <a href="#" class="btn btn-primary">BOOK NOW</a>
-                    </div>
-                  </div>
-             </div>
-             <div class="col-sm-3">
-                <div class="card" style="width: 16rem;">
-                    <div class="card-body">
-                      <h5 class="card-title"><B>SHANTI PUJA</B></h5>
-                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRCrTGumM9a9ju1xdv-O9jAdBgNAyWsPI9vA&usqp=CAU" class="card-img-top" alt="...">
-                      <a href="#" class="btn btn-primary">BOOK NOW</a>
-                    </div>
-                  </div>
-             </div>
-
-            <div class="col-sm-3">
-               <div class="card" style="width: 16rem;">
-                   <div class="card-body">
-                     <h5 class="card-title"><B>JANMASHTAMI PUJA</B></h5>
-                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtTXo_KkmKp0ONOjg45rLZM8R768DEK8mkGA&usqp=CAU" class="card-img-top" alt="...">
-                     <a href="#" class="btn btn-primary">BOOK NOW</a>
-                   </div>
-                 </div>
-            </div>
-            <div class="col-sm-3">
-               <div class="card" style="width: 16rem;">      
-                   <div class="card-body">
-                     <h5 class="card-title"><B>MRITYUNJAY HAVAN</B></h5>
-                     <img src="http://www.sarnam.com/images/maha1.jpg" class="card-img-top" alt="...">
-                     <a href="#" class="btn btn-primary">BOOK NOW</a>
-                   </div>
-                 </div>
-            </div>
-            <div class="col-sm-3">
-               <div class="card" style="width: 16rem;">
-                   <div class="card-body">
-                     <h5 class="card-title"><B>HOLI</B></h5>
-                     <img src="https://gumlet.assettype.com/freepressjournal/import/2018/02/holika-dahan_holi.jpg?format=webp&w=400&dpr=2.6" class="card-img-top" alt="...">
-                     <a href="#" class="btn btn-primary">BOOK NOW</a>
-                   </div>
-                 </div>
-            </div>
-            <div class="col-sm-3">
-               <div class="card" style="width: 16rem;">
-                   <div class="card-body">
-                     <h5 class="card-title"><B>SATYANARAYAN PUJA</B></h5>
-                     <img src="https://s3-eu-west-1.amazonaws.com/cdn.webfactore.co.uk/sr_955218_large.jpg" class="card-img-top" alt="...">
-                     <a href="#" class="btn btn-primary">BOOK NOW</a>
-                   </div>
-                 </div>
-            </div>
-       </div>
+                <img src="..." class="card-img-top" alt="...">
+                <a href="{% url 'puja' item.id %}" class="btn btn-primary">BOOK NOW</a>
+              </div>
+              {% endfor %}
+          </div>
     </div>
        <!-- Footer -->
        <footer class="text-center text-lg-start bg-warning text-muted">

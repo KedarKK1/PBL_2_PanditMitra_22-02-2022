@@ -24,6 +24,10 @@
         .recent div:hover {
             transform: scale(1.1);
         }
+
+        .card-img-top {
+            height: 170px;
+        }
     </style>
 
 
@@ -60,11 +64,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'book' %}">Book Pooja/Havan</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Reviews</a>
+                        <a class="nav-link" href="{% url 'myOrders' %}">My orders</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'pandit' %}">Pandit Profiles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'aboutUs' %}">About Us</a>
                     </li>
                 </ul>
                 {% if user.is_authenticated %}
@@ -162,7 +174,7 @@
 
 
             </div>
-
+            
             <div class="col-md-4 py-2">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1wnvLKRV8FovEUrWGARJpV6uIx8donj7Gw&usqp=CAU"
                     width="390" height="350px">
@@ -200,7 +212,7 @@
                  <div class="col-sm-3 col-md-3">
                     <div class="card" style="width: 16rem;">
                         <div class="card-body">
-                          <h5 class="card-title"><B>SHANTI PUJA</B></h5>
+                          <h5 class="card-title"><B>GRAHA SHANTI PUJA</B></h5>
                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRCrTGumM9a9ju1xdv-O9jAdBgNAyWsPI9vA&usqp=CAU" class="card-img-top" alt="...">
                           <a href="#" class="btn btn-primary">BOOK NOW</a>
                         </div>

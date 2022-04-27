@@ -58,16 +58,19 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'book' %}">Home</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'book' %}">Book Pooja/Havan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Reviews</a>
+                <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'pandit' %}">Pandit Profiles</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'aboutUs' %}">About Us</a>
               </li>
             </ul>
             <!-- <form class="d-flex"> -->
@@ -135,12 +138,14 @@
               name="email"
               required
               class=""
+              maxlength="45"
             />
             <label for="pass" class="login-label"><b>Enter Password</b></label>
             <input
               type="password"
               placeholder="Enter Password"
               name="pass"
+              minlength="8"
               required
             />
             <label for="pass" class="login-label"><b>Confirm Password</b></label>
@@ -148,6 +153,7 @@
               type="password"
               placeholder="Confirm Password"
               name="pass2"
+              minlength="8"
               required
             />
             <button type="submit" class="login-button mx-auto">Create Account</button>
@@ -166,7 +172,9 @@
         <div>
 
           {% for message in messages %}
-          {{message}}
+            <div class="text-center text-danger">
+              {{message}}!!
+            </div>
           {% endfor %}
 
         </div>
@@ -310,4 +318,7 @@
     </div>
     <!-- Footer -->
   </body>
+  <script type="text/javascript">
+    
+  </script>
 </html>

@@ -4,8 +4,15 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
+from pyrsistent import v
 from .models import *
 import datetime
+from django.core.mail import send_mail
+from django.db import connections
+import sqlite3
+import os
+import os.path
+from django.db.models import Avg
 
 # Create your views here.
 
@@ -54,21 +61,77 @@ def signUp(request):
         else:
             print("check passwords not matching")
             messages.info(request, 'Password not matching')
-            return redirect("/")
+            return redirect("/sign-up")
         return redirect("../login/")
 
     else:
         return render(request, "signup.html", {})
 
 
+def reviews(response):
+    return render(response, "chooseReview.html", {})
+
+
+def choosePujaForReview(response):
+    myPujas = Puja.objects.all()
+    # print(myPujas)
+    return render(response, "choosePujaForReview.html", {"ls": myPujas})
+
+
+def seeReviews(response):
+    ls = Reviews.objects.all()
+    # ls2 = Reviews.objects.all().created_date
+    # print(ls2)
+
+    # hiddens = response.GET.get('hiddens')
+    # print(hiddens+" is assumption")
+    # cursor = connections['db.sqlite3'].cursor()
+    # # cursor = connections['myworldtrial2'].cursor()
+    # lsDates = cursor.execute('SELECT created_at FROM Reviews')
+    # lsDates = Reviews.objects.raw('SELECT age(created_at) FROM Reviews')
+    # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    # db_path = os.path.join(BASE_DIR, "db.sqlite3")
+    # with sqlite3.connect(db_path) as conn:
+    #     # cursor = conn.cursor()
+    #     # cursor.execute('SELECT created_at FROM main_reviews;')
+    #     # data = cursor.fetchone()
+    #     # print('SQLite version:', data)
+    #     cursor = conn.cursor()
+    #     cursor.execute("table")
+    #     data = cursor.fetchone()
+    #     print('SQLite version:', data)
+
+    # print(lsDates)
+    return render(response, "seeReview.html", {"ls": ls})
+
+
 def book(response):
-    return render(response, "book.html", {})
+    myPujas = Puja.objects.all()
+    return render(response, "book.html", {"items": myPujas})
 
 
-def puja(response, id):
-    ls = Puja.objects.get(id=id)
-    ls = ls.nameOfPuja
-    return render(response, "MahalaxmifullInfo.html", {"myPuja": ls})
+def puja(request, id):
+    if(request.method == 'POST'):
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        yourRating = request.POST['yourRating']
+        title = request.POST['title']
+        your_reviews = request.POST['your_reviews']
+        pujaName = Puja.objects.get(id=id)
+        email = User.objects.get(username=request.user.username).email
+        # print(email)
+        myReviews = Reviews.objects.create(
+            fullName=first_name+" "+last_name, title=title, pujaName=pujaName, email=email, yourRating=yourRating, reviewText=your_reviews)
+        # print(myReviews+" saved!")
+        myReviews.save()
+        messages.info(request, 'Review created')
+        return redirect("/seeReviews")
+    else:
+        ls = Puja.objects.get(id=id)
+        ls2 = ls.nameOfPuja
+        # ls3 = Puja.objects.all().aggregate(Avg('yourRating'))
+        # print(ls3 + " is your rating")
+        return render(request, "MahalaxmifullInfo.html", {"myPuja": ls2, "ls": ls})
 
 
 @login_required
@@ -108,19 +171,61 @@ def order(request, id):
             first_name=first_name, last_name=last_name, mobile_no=mobile_no, pujaName=pujaName, dateOfPuja=dateOfPuja, address=address, email=email, total_pay=total, bookingDoneAt=orderRequestTime)
         myOrder.save()
         messages.info(request, 'Order successfully created')
-        return redirect(request.path)  # for redirecting to same page
+        # for redirecting to myOrders page
+        return redirect("/myOrders")
+        # return redirect(request.path)  # for redirecting to same page
         # return redirect("/")
         # return redirect("/puja/:<id>/order")
     else:
         # email = User.objects.get(username=request.user.username).email
         # print(email)
-        myPuja = Puja.objects.all()
         # print(myPuja)
         ls = Puja.objects.get(id=id)
         # additionalCharges = 18
         # total_Charges = ls.price + additionalCharges
         # ls = ls.nameOfPuja
-        return render(request, "order.html", {"myPuja": myPuja, "ls": ls})
+        # myPuja = Puja.objects.all()
+        return render(request, "order.html", {"ls": ls})
+        # return render(request, "order.html", {"myPuja": myPuja, "ls": ls})
+
+
+@login_required
+def myOrders(request):
+    # if 'myEditPuja' in request.POST:
+    #     # SUBSCRIBE
+    #     it = 17
+    #     return redirect(request.path)
+    # elif 'myCancellPuja' in request.POST:
+    #     # UNSUBSCRIBE
+    #     # orderList = Order.objects.filter(email=request.user.email)
+    #     deletionId = request.POST.get('myUniqueValue')
+    #     print(deletionId)
+    #     # deletionElement = Order.objects.get(id=deletionId)
+    #     # print(deletionElement)
+    #     return redirect(request.path)
+    # else:
+    orderList = Order.objects.filter(email=request.user.email)
+    # print(orderList)
+    return render(request, "myOrders.html", {"orderList": orderList})
+
+
+def updateOrders(request, pk):
+    givenObject = Order.objects.get(id=pk)
+    # form = OrderForm(request.POST)
+    abc = Order(id=givenObject.id)  # for filling up form
+    # print(abc)
+    # orderList = Order.objects.filter(email=request.user.email)
+    return render(request, "order.html", {"ls": abc})
+
+
+def deleteOrders(request, pk):
+    givenObject = Order.objects.get(id=pk)
+    # if request.method == "POST":
+    # print("deleting ", givenObject)
+    givenObject.delete()
+    # Order.save()
+    orderList = Order.objects.filter(email=request.user.email)
+    return render(request, "myOrders.html", {"orderList": orderList})
 
 
 def pandit(response):

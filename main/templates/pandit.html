@@ -30,11 +30,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'book' %}">Book Pooja/Havan</a>
               </li>
+              {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="#">Reviews</a>
+                  <a class="nav-link" href="{% url 'myOrders' %}">My orders</a>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="{% url 'pandit' %}">Pandit Profiles</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'aboutUs' %}">About Us</a>
               </li>
             </ul>
             {% if user.is_authenticated %}
