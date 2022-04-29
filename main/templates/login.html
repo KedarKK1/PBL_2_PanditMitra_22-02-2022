@@ -28,7 +28,7 @@
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="{% url 'home' %}">
             <img
               src="https://cdni.iconscout.com/illustration/premium/thumb/pandit-ji-2704960-2252413.png"
               height="40"
@@ -105,7 +105,7 @@
       <!-- <div class="col-md-6"> -->
       <div class="login col-md-6">
         <h1 class="h1class">Login for customers/pandit</h1>
-        <form method="post" action="">{% csrf_token%}
+        <form method="post" action="" autocomplete="off">{% csrf_token%}
           <div class="profilePic">
             <!-- <img
               src="https://www.w3schools.com/howto/img_avatar2.png"

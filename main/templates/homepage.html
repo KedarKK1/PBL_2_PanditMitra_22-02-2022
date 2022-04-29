@@ -44,7 +44,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="https://cdni.iconscout.com/illustration/premium/thumb/pandit-ji-2704960-2252413.png"
                     alt="logo" width="70" height="40" class="d-inline-block align-text-top">
             </a>
@@ -187,7 +187,7 @@
                         <div class="card-body">
                           <h5 class="card-title"><B>LAXMI PUJAN</B></h5>
                           <img src="https://bizimages.withfloats.com/tile/60d4b6f4ce6dc70001015753.jpg" class="card-img-top" alt="...">
-                          <a href="{{ url_for}}" class="btn btn-primary">BOOK NOW</a>
+                          <a href="{% url 'book' %}" class="btn btn-primary">BOOK NOW</a>
                         </div>
                     </div>
                  </div>
@@ -196,7 +196,8 @@
                         <div class="card-body">
                           <h5 class="card-title"><B>SARASWATI HAVAN</B></h5>
                           <img src="https://www.jagranimages.com/images/newimg/29012020/29_01_2020-saraswati_19979168.jpg" class="card-img-top" alt="...">
-                          <a href="#" class="btn btn-primary">BOOK NOW</a>
+                          <a href="{% url 'book' %}" class="btn btn-primary">BOOK NOW</a>
+
                         </div>
                     </div>
                  </div>
@@ -205,7 +206,7 @@
                         <div class="card-body">
                           <h5 class="card-title"><B>DUSSEHRA</B></h5>
                           <img src="https://cdn.shopaccino.com/rudraksha-center/products/dussehra-puja-593331_l.jpg" class="card-img-top" alt="...">
-                          <a href="#" class="btn btn-primary">BOOK NOW</a>
+                          <a href="{% url 'book' %}" class="btn btn-primary">BOOK NOW</a>
                         </div>
                       </div>
                  </div>
@@ -214,7 +215,7 @@
                         <div class="card-body">
                           <h5 class="card-title"><B>GRAHA SHANTI PUJA</B></h5>
                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRCrTGumM9a9ju1xdv-O9jAdBgNAyWsPI9vA&usqp=CAU" class="card-img-top" alt="...">
-                          <a href="#" class="btn btn-primary">BOOK NOW</a>
+                          <a href="{% url 'book' %}" class="btn btn-primary">BOOK NOW</a>
                         </div>
                       </div>
                  </div>
