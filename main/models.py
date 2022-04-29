@@ -25,13 +25,23 @@ def minMax3(value):
             ('Value must be between 0 and 5'), param={'value': value},)
 
 
+expertiseField = (
+    ('Mahalaxmi'),
+    (''),
+)
+
+
 class Puja(models.Model):
     id = models.AutoField(primary_key=True)
     nameOfPuja = models.CharField(max_length=50, unique=True)
     price = models.IntegerField(default=0, validators=[minMax2])
     panditName = models.CharField(max_length=50, blank=True)
     # imageURL textfield
-    
+    imageUrl = models.TextField(
+        default="https://image.shutterstock.com/image-vector/vector-graphic-illustration-indian-pandit-260nw-1803127855.jpg", null=True, blank=True)
+    # expertiseIn = models.Charfield(max_length=10, choices=expertiseField)
+    introText = models.CharField(max_length=200, null=True, blank=True)
+    discription = models.TextField(null=True, blank=True)
     # categories (Remove Late marriage/Wedding Obstacles) Puja,(Property/Legal/Court Cases) Shanti Puja,Sarpa Dosha Pooja,Swastha Sampanna Puja,Dussera,Laxmi Kubera,Mahalaxmi
 
     def __str__(self):
@@ -46,6 +56,7 @@ class Pandit(models.Model):
     # nameOfPandit = models.ForeignKey(Puja, blank=True)
     nameOfPandit = models.CharField(max_length=50)
     experience = models.IntegerField(default=0, validators=[minMax])
+    panditDescription = models.TextField(null=True, blank=True)
     # pujaName = models.ForeignKey(Puja, on_delete=models.CASCADE)
     # expertiseIn = forms.ChoiceField(
     #     choices=expertise_choices, widget=forms.RadioSelect())
@@ -86,6 +97,6 @@ class Reviews(models.Model):
     reviewText = models.TextField(verbose_name='Reviews Text')
     created_date = models.DateTimeField(default=now, editable=False)
     yourRating = models.IntegerField(default=0, validators=[minMax3])
-    
+
     def __str__(self):
         return f"{self.created_date} {self.pujaName} {self.yourRating} stars {self.fullName}"

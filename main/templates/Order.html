@@ -76,17 +76,17 @@
 
 
     <div class="container_fluid">
-        <div class="py-3 row justify-content-around">
-            <div class="col-12 col-md-6" style="width: 18rem;">
-                <div class="card" style="width: 18rem">
+        <div class="row justify-content-around">
+            <div class="col-sm-12 col-md-6 my-3" style="width: 18rem;">
+                <div class="card" style="width: 20rem">
                     <div class="card-body">
                       <h5 class="card-title">Billing Details</h5>
                       <div class="row">
-                        <div class="col">
-                          <form method="post" action="" class="row g-3">{% csrf_token %}
+                        <div class="col-6 col-md-6">
+                          <form method="post" action="" class="row g-3" autocomplete="off">{% csrf_token %}
                           <input type="text" name="first_name" class="form-control" placeholder="First name" aria-label="First name">
                         </div>
-                        <div class="col">
+                        <div class="col-6 col-md-6">
                           <input type="text" name="last_name" class="form-control" placeholder="Last name" aria-label="Last name">
                         </div>
                       </div>
@@ -100,27 +100,27 @@
                               </label>
                             </div>
                         
-                              <div class="col-md-6">
-                                <label for="birthdaytime" class="form-label">Date and Time</label>
+                              <div class="col-8 col-md-8">
+                                <label for="birthdaytime" class="form-label">Date and Time:</label>
                                 <input type="datetime-local" id="birthdaytime" name="birthdaytime" class="form-control" id="birthdaytime">
                               </div>
-                              <div class="col-md-6">
-                                <label for="MobNo" class="form-label">Mob no</label>
+                              <div class="col-8 col-md-8">
+                                <label for="MobNo" class="form-label">Mobile no.</label>
                                 <input type="number" class="form-control" id="MobNo" name="MobNo">
                               </div>
-                              <div class="col-12">
-                                <label for="inputAddress" class="form-label">Address</label>
+                              <div class="col-8 col-md-12">
+                                <label for="inputAddress" class="form-label">Address 1</label>
                                 <input name="address1" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
                               </div>
-                              <div class="col-12">
+                              <div class="col-8 col-md-12">
                                 <label for="inputAddress2" class="form-label">Address 2</label>
                                 <input name="address2" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-8 col-md-8">
                                 <label for="inputCity" class="form-label">City</label>
                                 <input name="city" type="text" class="form-control" id="inputCity">
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-8 col-md-8">
                                 <label for="inputState" class="form-label">State</label>
                                 <select name="state" id="inputState" class="form-select">
                                   <option selected>Choose...</option>
@@ -162,18 +162,18 @@
                                   <option value="West Bengal">West Bengal</option>
                                 </select>
                               </div>
-                              <div class="col-md-2">
+                              <div class="col-6 col-md-6">
                                 <label for="inputZip" class="form-label">Zip</label>
                                 <input name="zip" type="text" class="form-control" id="inputZip">
                               </div>
-                              <div class="col-12">
+                              {% comment %} <div class="col-12">
                                 <div class="form-check">
                                   <input class="form-check-input" type="checkbox" id="gridCheck">
                                   <label class="form-check-label" for="gridCheck">
                                     Create an account
                                   </label>
                                 </div>
-                              </div>
+                              </div> {% endcomment %}
 
                               
                             </div>
@@ -181,9 +181,9 @@
             </div>
             
             <!-- 2nd card start -->
-            <div class="col-12 col-md-6" style="width: 18rem;">
+            <div class="col-sm-12 col-md-6 my-3" style="width: 18rem;">
               
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 20rem;">
                   
                   <div class="card-body">
                     <h5 class="card-title">Your Order</h5>
@@ -203,8 +203,8 @@
                           </tr>
                           {% endfor %} --> {% endcomment %}
                           <tr>
-                            <td scope="row">{{ls.nameOfPuja}}</td>
-                            <td>₹<span id="initial_price">{{ls.price}}</span>/-</td>
+                            <td scope="row">{{ls.nameOfPuja}}{{ls.pujaName}}</td>
+                            <td>₹<span id="initial_price">{{ls.price}}{{ls.total_pay}}</span>/-</td>
                           </tr>
                           <tr>
                             <td scope="row">City:</td>

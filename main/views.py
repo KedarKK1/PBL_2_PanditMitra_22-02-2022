@@ -12,9 +12,19 @@ from django.db import connections
 import sqlite3
 import os
 import os.path
-from django.db.models import Avg
-
+from django.db.models import Avg, Count, FloatField
+from django.core.mail import send_mail, BadHeaderError, EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
 # Create your views here.
+
+
+def handler404(request, exception):
+    return render(request, "errorPage.html", {})
+
+
+def handler403(request):
+    return render(request, "errorPage.html", {})
 
 
 def home(response):
@@ -54,6 +64,24 @@ def signUp(request):
                 messages.info(request, 'Email already exists')
                 return redirect("/sign-up")
             else:
+                # send email
+                template = render_to_string(
+                    'signUpEmail.html', {'username': username})
+                # email1 = EmailMessage(
+                #     'Sign Up link for PanditMitra',  # subject
+                #     template,  # message
+                #     settings.EMAIL_HOST_USER,  # from Email
+                #     [email],  # to email
+                # )
+                # email1.fail_silently=False
+                # email1.send()
+
+                # try:
+                #     send_mail('Sign Up link for PanditMitra', template, settings.EMAIL_HOST_USER, [email])
+                # except BadHeaderError:
+                #     return HttpResponse('Invalid header found.')
+                # return HttpResponseRedirect('/contact/thanks/')
+
                 user = User.objects.create_user(
                     username=username, email=email, password=password1)
                 user.save()
@@ -131,7 +159,17 @@ def puja(request, id):
         ls2 = ls.nameOfPuja
         # ls3 = Puja.objects.all().aggregate(Avg('yourRating'))
         # print(ls3 + " is your rating")
-        return render(request, "MahalaxmifullInfo.html", {"myPuja": ls2, "ls": ls})
+        # Here pujaName = ls2 will not work, it'll give expected id but got Laxi Puja error
+        # so to get a foreign key's filtering add foreignKey__nameOFCategory = ls2
+        ls3 = Reviews.objects.filter(pujaName__nameOfPuja=ls2)
+        ls3count = str(ls3.count())
+        # print(ls3count + " ")
+        print(ls3)
+        ls3Avg = ls3.aggregate(Avg('yourRating', output_field=FloatField()))
+        # myls3Avg = ls3[:].yourRating__avg
+        # myls3Avg = ls3.aggregate(Avg('yourRating'))
+        # print(str(myls3Avg) + "is avarage")
+        return render(request, "MahalaxmifullInfo.html", {"myPuja": ls2, "ls": ls, "ls3count": ls3count, "ls3Avg": ls3Avg})
 
 
 @login_required
@@ -210,12 +248,53 @@ def myOrders(request):
 
 
 def updateOrders(request, pk):
-    givenObject = Order.objects.get(id=pk)
-    # form = OrderForm(request.POST)
-    abc = Order(id=givenObject.id)  # for filling up form
-    # print(abc)
-    # orderList = Order.objects.filter(email=request.user.email)
-    return render(request, "order.html", {"ls": abc})
+    if request.method == 'POST':
+        # ls = Puja.objects.get(id=id)
+        # ls = ls.nameOfPuja
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        gender = request.POST['optradio']
+        dateOfPuja = request.POST['birthdaytime']
+        # print(gender)
+        address1 = request.POST['address1']
+        address2 = request.POST['address2']
+        city = request.POST['city']
+        state = request.POST['state']
+        zip = request.POST['zip']
+        address = address1 + ', ' + address2 + ', ' + city + ', ' + state + ', ' + zip
+        # print(address)
+        # total = '1000'
+        email = User.objects.get(username=request.user.username).email
+        # print(email)
+        pujaId = Order.objects.get(id=pk)
+        pujaName = pujaId.pujaName
+        total = pujaId.total_pay  # 18rs are charges for transaction...
+        mobile_no = request.POST['MobNo']
+        # request.post se multiValueDictKey error aaya -> uske liye phir request.pits.get[] kiya
+        # fir bhi error aaya ki TypeError: ‘method’ object is not subscriptable” iske liye brackets round kiye string
+        # phir bhi can only concatenate str (not "NoneType") to str error aya uske liye " " kiya instead ''
+        # orderRequestTime = request.POST['todayDate']
+        # orderRequestTime = str(orderRequestTime)
+        orderRequestTime = str(datetime.datetime.now())
+        # print(type(orderRequestTime), orderRequestTime)
+        #mobile_no = models.CharField(max_length=15)
+        # phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+        # phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True) # Validators should be a list
+        Order.objects.filter(id=pk).update(
+            first_name=first_name, last_name=last_name, mobile_no=mobile_no, pujaName=pujaName, dateOfPuja=dateOfPuja, address=address, email=email, total_pay=total, bookingDoneAt=orderRequestTime)
+        # Order.objects.refresh_from_db()
+        # Order.save()
+        messages.info(request, 'Order successfully updated')
+        # for redirecting to myOrders page
+        return redirect("/myOrders")
+    else:
+        givenObject = Order.objects.get(id=pk)
+        # form = OrderForm(request.POST)
+        abc = Order(id=givenObject.id)  # for filling up form
+
+        # print(abc)
+        # orderList = Order.objects.filter(email=request.user.email)
+        return render(request, "order.html", {"ls": givenObject})
 
 
 def deleteOrders(request, pk):

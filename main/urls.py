@@ -9,6 +9,7 @@ urlpatterns = [
     path("choosePujaForReview/", views.choosePujaForReview,
          name="choosePujaForReview"),
     path("seeReviews/", views.seeReviews, name="seeReviews"),
+    # path("seeReviews/<int:id>", views.seeReviewsById, name="seeReviewsById"),
     path("sign-up/", views.signUp, name="sign_Up"),
     path("book/", views.book, name="book"),
     path("pandit/", views.pandit, name="pandit"),
@@ -21,3 +22,6 @@ urlpatterns = [
     path("aboutUs/", views.aboutUs, name="aboutUs"),
     path("logout/", views.logout, name="logout"),
 ]
+
+handle404 = 'views.handler404'
+handle403 = 'views.handler403'

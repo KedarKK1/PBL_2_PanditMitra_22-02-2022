@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/fullInfo.css' %}">
 </head>
-<body>
+<body >
     <!-- navbar here -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -94,7 +94,7 @@
         <nav aria-label="breadcrumb " class="giveBg">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'book' %}">Pooja</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'book' %}">Puja</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ls.nameOfPuja}}</li>
           </ol>
         </nav>
@@ -105,20 +105,21 @@
         <div class="row">
           <div class="col-md-5">
             <figure class="figure">
-              <img src="http://nagpurtoday.in/wp-content/uploads/2013/09/Mahalaxmi-532x400.jpg" class="figure-img img-fluid rounded" alt="...">
-              <figcaption class="figure-caption text-end">{{ls.nameOfPuja}} Puja</figcaption>
+              <img src="{{ls.imageUrl}}" class="figure-img img-fluid rounded" alt="...">
+              <figcaption class="figure-caption text-end">{{ls.nameOfPuja}}</figcaption>
             </figure>
             <!-- <img class="border1" src="http://nagpurtoday.in/wp-content/uploads/2013/09/Mahalaxmi-532x400.jpg" alt="mahalaxmi_image" width="400"> -->
+          <!-- https://i.ytimg.com/vi/Q5FAaIg8GF8/maxresdefault.jpg -->
+          <!-- https://productimages.withfloats.com/serviceimages/tile/60dae0b57937c13f37065a65navagraha -->
           </div>
           <div class="col-md-7">
             <div class="intro mb-2">
-              <span class="myTitle ">{{ls.nameOfPuja}} Puja :</span><br> Ratings: 4.2/5 <span class="text-primary">(3 review)</span> 
+              <span class="myTitle ">{{ls.nameOfPuja}} :</span><br> Ratings: {{ls3Avg.yourRating__avg}}/5 <span class="text-primary">({{ls3count}} review)</span> 
             </div>
             
 
             <div class="border1 py-2 px-2">
-              <b>Godness Mahalaxmi </b> is the symbol of wealth and phospherity.
-              Mahalaxmi pooja is done during diwali to invite wealth, phospherity and goodwill into the homes. 
+             {{ls.introText}}
               
               <div class="row border-top1 mt-2">
                 <div class="col-md-6 mt-2">
@@ -383,14 +384,7 @@
                 </ul>
                 <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
                   <h4 id="Description">Description</h4>
-                  <p>Mahalaxmi Puja is performed for Goddess Laxmi, the consort of Lord Vishnu is a manifestation of wealth, fortune, and prosperity. People who are involved in business or people who are facing financial problems may perform this puja to receive the blessings and grace of Goddess Laxmi and attain high revenues & profitability in business.
-      
-                    This puja is performed by invoking Goddess Laxmi followed by chanting Laxmi Mantra and then performing the Puja to receive Goddess Laxmi’s blessings.
-                    
-                    When to Perform Mahalaxmi havan?
-                    Schedule the havan date as per the Janma Nakshatra of a person and by considering the Yoga, and Thithi of that particular date.
-                    Diwali, Dhanteras, Akshaya Tritiya, Fridays are considered auspicious times to perform havan.
-                  </p>
+                  {{ls.discription}}
                   <h4 id="Samagree">Material Provided</h4>
                   <ul>
                     <li>Flowers</li>
