@@ -16,6 +16,8 @@ from django.db.models import Avg, Count, FloatField
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
+import datetime
+
 # Create your views here.
 
 
@@ -108,8 +110,14 @@ def choosePujaForReview(response):
 
 def seeReviews(response):
     ls = Reviews.objects.all()
-    # ls2 = Reviews.objects.all().created_date
+    myPujas = Puja.objects.all()
+    # ls2 = str(Reviews.objects.values_list('created_date'))
     # print(ls2)
+    # above code for objects.values_list is working
+
+    ls2 = Reviews.objects.values_list('created_date')
+    data = datetime.datetime.strptime(ls2, '%Y-%m-%dT%H:%M')
+    print(data)
 
     # hiddens = response.GET.get('hiddens')
     # print(hiddens+" is assumption")
@@ -130,7 +138,7 @@ def seeReviews(response):
     #     print('SQLite version:', data)
 
     # print(lsDates)
-    return render(response, "seeReview.html", {"ls": ls})
+    return render(response, "seeReview.html", {"ls": ls, "ls2": myPujas})
 
 
 def book(response):

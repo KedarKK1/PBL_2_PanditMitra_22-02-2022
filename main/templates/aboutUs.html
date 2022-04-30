@@ -33,6 +33,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'book' %}">Book Pooja/Havan</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'myOrders' %}">My orders</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
                     </li>
