@@ -116,8 +116,8 @@ def seeReviews(response):
     # above code for objects.values_list is working
 
     ls2 = Reviews.objects.values_list('created_date')
-    data = datetime.datetime.strptime(ls2, '%Y-%m-%dT%H:%M')
-    print(data)
+    # data = datetime.datetime.strptime(ls2, '%Y-%m-%dT%H:%M')
+    # print(data)
 
     # hiddens = response.GET.get('hiddens')
     # print(hiddens+" is assumption")
@@ -172,11 +172,21 @@ def puja(request, id):
         ls3 = Reviews.objects.filter(pujaName__nameOfPuja=ls2)
         ls3count = str(ls3.count())
         # print(ls3count + " ")
-        print(ls3)
+        # print(ls3)
         ls3Avg = ls3.aggregate(Avg('yourRating', output_field=FloatField()))
         # note - ls3Avg is a dictionary we have to put ls3Avg.yourRating__avg to get value
         # print(ls3Avg['yourRating__avg'])
-        ls3AvgRoundoff2digit = round(ls3Avg['yourRating__avg'], 2)
+        # when there is no review it is giving TypeError that no value can be of NoneType
+        # so used exception handeling here
+        # ls3AvgRoundoff2digit = 0.00
+        while True:
+            try:
+                ls3AvgRoundoff2digit = round(ls3Avg['yourRating__avg'], 2)
+                break
+            except TypeError:
+                # print("no reviews yet")
+                ls3AvgRoundoff2digit = 0.00
+                break
         # print(ls3AvgRoundoff2digit)
         # myls3Avg = ls3[:].yourRating__avg
         # myls3Avg = ls3.aggregate(Avg('yourRating'))

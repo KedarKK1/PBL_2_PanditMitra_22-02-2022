@@ -30,6 +30,21 @@ expertiseField = (
     (''),
 )
 
+# our_promise_options=(
+#     ('For financial stability and gain'),
+#     ('Done on friday or other auspicious days according to Nakshatra'),
+#     ('Lotus flowers are main ingredients used'),
+#     ('Other ingredients list will be provided separately after confirmation')
+# )
+
+# key_insights_options=(
+#     ('Vedic pathshala certified Pandits'),
+#     ('All pure ingredients used'),
+#     ('On-time punctual poojas'),
+#     ('Professional guidance and support'),
+#     ('Custom changes to pooja are always Welcomed')
+# )
+
 
 class Puja(models.Model):
     id = models.AutoField(primary_key=True)
@@ -42,6 +57,8 @@ class Puja(models.Model):
     # expertiseIn = models.Charfield(max_length=10, choices=expertiseField)
     introText = models.CharField(max_length=200, null=True, blank=True)
     discription = models.TextField(null=True, blank=True)
+    # key_insights
+    # our_promise = model
     # categories (Remove Late marriage/Wedding Obstacles) Puja,(Property/Legal/Court Cases) Shanti Puja,Sarpa Dosha Pooja,Swastha Sampanna Puja,Dussera,Laxmi Kubera,Mahalaxmi
 
     def __str__(self):
