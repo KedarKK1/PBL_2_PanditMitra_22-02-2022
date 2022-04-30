@@ -114,7 +114,7 @@
           </div>
           <div class="col-md-7">
             <div class="intro mb-2">
-              <span class="myTitle ">{{ls.nameOfPuja}} :</span><br> Ratings: {{ls3Avg.yourRating__avg}}/5 <span class="text-primary">({{ls3count}} review)</span> 
+              <span class="myTitle ">{{ls.nameOfPuja}} :</span><br> Ratings: {{ls3Avg.yourRating__avg}} or {{ls3AvgRoundoff2digit}}/5 <span class="text-primary">({{ls3count}} review)</span> 
             </div>
             
 
@@ -398,13 +398,13 @@
                     <li>How Long does the Puja take to complete?</li>
                     Ans:- Pujas are typically performed for 1 to 3+ hours. At the same time it also depends on the package selected for the Puja.
                   </ol></p>
-                  <h4 id="WRITEREVIEW">WRITE A REVIEW</h4>
+                  <h4 id="WRITEREVIEW">WRITE A REVIEW/FEEDBACK</h4>
                   <p>
-                  <form method="post" action="">{% csrf_token %}
+                  <form method="post" action="" autocomplete="off">{% csrf_token %}
                     <div class="input-group border px-5 py-3">
                       <span class="input-group-text">First and last name</span>
-                      <input type="text" aria-label="First name" class="form-control" name="first_name">
-                      <input type="text" aria-label="Last name" class="form-control" name="last_name">
+                      <input type="text" aria-label="First name" class="form-control" name="first_name" placeholder="first name">
+                      <input type="text" aria-label="Last name" class="form-control" name="last_name" placeholder="last name">
                       <div class="input-group mt-3">
                         <span class="input-group-text mt-3" id="basic-addon3">Your Ratings</span>
                         <!-- <input type="text" name="" class="form-control mt-3" id="basic-url" aria-describedby="basic-addon3"> -->
@@ -416,15 +416,15 @@
                           <option value="4">4</option>
                           <option value="5">5</option>
                         </select> 
+                          <span class="input-group-text mt-3">Write Title for review/feedback</span>
+                          <textarea class="form-control mt-3" aria-label="With textarea" name="title" placeholder="Your review title"></textarea>
                       </div>
                       <div class="input-group mt-3">
-                        <span class="input-group-text">Write Title for review</span>
-                        <textarea class="form-control" aria-label="With textarea" name="title"></textarea>
   
-                        <span class="input-group-text">Write your Review</span>
-                        <textarea class="form-control" aria-label="With textarea" name="your_reviews"></textarea>
+                        <span class="input-group-text">Write your Review/feedback</span>
+                        <textarea class="form-control" aria-label="With textarea" name="your_reviews" placeholder="Enter your review/feedback"></textarea>
                       </div>
-                      <button type="submit" class="btn btn-primary mt-3">Review NOW</a>
+                      <button type="submit" class="btn btn-primary mt-3">Review NOW</button>
                       <!-- <div>
                         {% for puja in myPuja %}
                           {{puja}}

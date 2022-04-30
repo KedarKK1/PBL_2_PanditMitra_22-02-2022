@@ -166,10 +166,14 @@ def puja(request, id):
         # print(ls3count + " ")
         print(ls3)
         ls3Avg = ls3.aggregate(Avg('yourRating', output_field=FloatField()))
+        # note - ls3Avg is a dictionary we have to put ls3Avg.yourRating__avg to get value
+        # print(ls3Avg['yourRating__avg'])
+        ls3AvgRoundoff2digit = round(ls3Avg['yourRating__avg'], 2)
+        # print(ls3AvgRoundoff2digit)
         # myls3Avg = ls3[:].yourRating__avg
         # myls3Avg = ls3.aggregate(Avg('yourRating'))
         # print(str(myls3Avg) + "is avarage")
-        return render(request, "MahalaxmifullInfo.html", {"myPuja": ls2, "ls": ls, "ls3count": ls3count, "ls3Avg": ls3Avg})
+        return render(request, "MahalaxmifullInfo.html", {"myPuja": ls2, "ls": ls, "ls3count": ls3count, "ls3Avg": ls3Avg, "ls3AvgRoundoff2digit": ls3AvgRoundoff2digit})
 
 
 @login_required
