@@ -17,6 +17,7 @@ from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 import datetime
+import random
 
 # Create your views here.
 
@@ -41,13 +42,40 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.info(request, "User logged in successfully")
-            print("User logged in successfully")
+            # print("User logged in successfully")
             return redirect("../")
         else:
-            print("invalid credentials")
+            # print("invalid credentials")
             messages.info(request, "Invalid credatials")
             return redirect("/login")
     return render(request, "login.html", {})
+
+
+def confirmation(request, id):
+    if(request.method == 'POST'):
+        mySecreteKey = request.POST['mySecreteKey']
+        mySecreteKey = int(mySecreteKey)
+        # print("mySecreteKey is ", mySecreteKey," and it type is ", type(mySecreteKey))
+        myUser1 = myUser.objects.get(id=id)
+        # print("myUser found ", myUser1)
+        userSecretKey = myUser1.secretKey
+        # print("User secret key is ", userSecretKey," and its type is ", type(userSecretKey))
+        if(mySecreteKey == userSecretKey):
+            username = myUser1.username
+            password1 = myUser1.password
+            print("password of user was", password1)
+            email = myUser1.email
+            user = User.objects.create_user(
+                username=username, email=email, password=password1)
+            user.save()
+            # print("user created")
+            messages.info(request, "User created successfully!! Please login")
+            return redirect('login')
+        else:
+            print("check OTP not matching")
+            messages.info(request, 'OTP not matching')
+            return redirect(request.path)
+    return render(request, "confirmation.html", {})
 
 
 def signUp(request):
@@ -56,6 +84,8 @@ def signUp(request):
         email = request.POST['email']
         password1 = request.POST['pass']
         password2 = request.POST['pass2']
+        myRandomKey = random.randint(100000, 999999)
+        print("random key generated equal to ", myRandomKey)
         if password1 == password2:
             if User.objects.filter(username=username).exists():
                 print("Username already exists")
@@ -68,7 +98,7 @@ def signUp(request):
             else:
                 # send email
                 template = render_to_string(
-                    'signUpEmail.html', {'username': username})
+                    'signUpEmail.html', {'username': username, 'myRandomKey': myRandomKey})
                 # email1 = EmailMessage(
                 #     'Sign Up link for PanditMitra',  # subject
                 #     template,  # message
@@ -78,21 +108,22 @@ def signUp(request):
                 # email1.fail_silently=False
                 # email1.send()
 
-                # try:
-                #     send_mail('Sign Up link for PanditMitra', template, settings.EMAIL_HOST_USER, [email])
-                # except BadHeaderError:
-                #     return HttpResponse('Invalid header found.')
-                # return HttpResponseRedirect('/contact/thanks/')
+                try:
+                    send_mail('Verification link for PanditMitra',
+                              template, settings.EMAIL_HOST_USER, [email])
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found.')
+                myUser1 = myUser.objects.create(
+                    username=username, email=email, password=password1, secretKey=myRandomKey)
+                myUser1id = myUser1.id
+                # print('myUser created')
+                return redirect('confirmation', id=myUser1id)
 
-                user = User.objects.create_user(
-                    username=username, email=email, password=password1)
-                user.save()
-                print("user created")
         else:
-            print("check passwords not matching")
+            # print("check passwords not matching")
             messages.info(request, 'Password not matching')
-            return redirect("/sign-up")
-        return redirect("../login/")
+            return redirect(request.path)
+        # return redirect('login')
 
     else:
         return render(request, "signup.html", {})
@@ -275,15 +306,9 @@ def updateOrders(request, pk):
         # ls = ls.nameOfPuja
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
-        gender = request.POST['optradio']
         dateOfPuja = request.POST['birthdaytime']
         # print(gender)
-        address1 = request.POST['address1']
-        address2 = request.POST['address2']
-        city = request.POST['city']
-        state = request.POST['state']
-        zip = request.POST['zip']
-        address = address1 + ', ' + address2 + ', ' + city + ', ' + state + ', ' + zip
+        address = request.POST['address']
         # print(address)
         # total = '1000'
         email = User.objects.get(username=request.user.username).email
@@ -312,11 +337,14 @@ def updateOrders(request, pk):
     else:
         givenObject = Order.objects.get(id=pk)
         # form = OrderForm(request.POST)
-        abc = Order(id=givenObject.id)  # for filling up form
-
+        # abc = Order.objects.filter(id=givenObject.id)  # for filling up form
         # print(abc)
+        date_time = givenObject.dateOfPuja
+        # converting dd-mm-yyyy time of above object into y-m-d
+        date_time = date_time.strftime("%Y-%m-%dT%H:%M:%S")
+        print(date_time)
         # orderList = Order.objects.filter(email=request.user.email)
-        return render(request, "order.html", {"ls": givenObject})
+        return render(request, "updateOrder.html", {"ls": givenObject, "date_time": date_time})
 
 
 def deleteOrders(request, pk):

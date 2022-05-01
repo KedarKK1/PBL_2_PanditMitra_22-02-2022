@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <!-- font awsome link -->
 <script src="https://kit.fontawesome.com/71f1ca357e.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
         <!-- navbar here -->
@@ -126,8 +127,8 @@
             </div>
 
         </div>
-                 <!-- Footer -->
-       <footer class="text-center text-lg-start bg-warning text-muted">
+      <!-- Footer -->
+      <footer class="text-center text-lg-start bg-warning text-muted">
         <!-- Section: Social media -->
         <section
           class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
@@ -187,13 +188,13 @@
                   Pujas
                 </h6>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Mahalaxmi Pooja</a>
+                  <a href="{% url 'book' %}" class="text-reset">Mahalaxmi Pooja</a>
                 </p>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Laxmi Kuber havan</a>
+                  <a href="{% url 'book' %}" class="text-reset">Laxmi Kuber havan</a>
                 </p>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Dusshera</a>
+                  <a href="{% url 'book' %}" class="text-reset">Dusshera</a>
                 </p>
                 <!-- <p style="color:red;">
                   <a href="#!" class="text-reset">Early Marriage/Remove Wedding Obstacles</a>
@@ -208,7 +209,7 @@
                   Main links
                 </h6>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Login/Register</a>
+                  <a href="{% url 'login' %}" class="text-reset">Login/Register</a>
                 </p>
                 <p style="color:red;">
                   <a href="#!" class="text-reset">Temple Services</a>
@@ -217,7 +218,7 @@
                   <a href="#!" class="text-reset">Orders</a>
                 </p>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Help</a>
+                  <a href="{% url 'aboutUs' %}" class="text-reset">Help</a>
                 </p>
               </div>
               <!-- Grid column -->
@@ -228,13 +229,13 @@
                 <h6 class="text-uppercase fw-bold mb-4">
                   Contact
                 </h6>
-                <p style="color:red;"><i class="fas fa-home me-3"></i> Pune Maharashtra</p>
+                <p style="color:red;"><i class="fas fa-home me-3"></i> Pune, Maharashtra</p>
                 <p style="color:red;">
                   <i class="fas fa-envelope me-3"></i>
-                  panditmitra@.com
+                  <a class="text-danger" href="mailto:panditmitrateam@gmail.com">panditmitrateam@gmail.com</a>
                 </p>
-                <p style="color:red;"><i class="fas fa-phone me-3"></i> +911234567890</p>
-                <p style="color:red;"><i class="fas fa-print me-3"></i> +910987654321</p>
+                <p style="color:red;"><i class="fas fa-phone me-3"></i><a class="text-danger" href="tel:+911234567890">+911234567890</a></p>
+                <p style="color:red;"><i class="fas fa-print me-3"></i><a class="text-danger" href="tel:+910987654321">+910987654321</a></p>
               </div>
               <!-- Grid column -->
             </div>
@@ -250,7 +251,7 @@
         </div>
         <!-- Copyright -->
       </footer>
-      <!-- Footer --> 
+      <!-- Footer -->
       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script type="text/javascript">
           $(document).ready(function(){

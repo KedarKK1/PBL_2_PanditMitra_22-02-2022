@@ -47,10 +47,10 @@
                     <a class="nav-link" href="{% url 'book' %}">Book Pooja/Havan</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link active" href="{% url 'myOrders' %}">My orders</a>
+                      <a class="nav-link" href="{% url 'myOrders' %}">My orders</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
+                    <a class="nav-link active" href="{% url 'reviews' %}">Reviews</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'pandit' %}">Pandit Profiles</a>
@@ -71,59 +71,25 @@
               </div>
             </div>
           </nav>   
-      
-        <div class="container-fluid my-3">
-            <form method="post" >{% csrf_token %}
-            
-                <table class="table table-hover">  
-                    <thead>
-                        <tr class="table-dark ">
-                            <th scope="col">#</th>
-                            <th scope="col">Date & time of Puja</th>
-                            <th scope="col">Puja name</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Full Name</th>
-                            <th scope="col">Booking Done At</th>
-                            <th scope="col">Total Price</th>
-                            <th scope="col">Edit Booking</th>
-                            <th scope="col">Cancell Booking</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% if orderList %}
-                            {% for orders in orderList %}
-                            <tr>
-                                <div class="d-none deletionId" id="deletionId" name="deletionId">{{orders.id}}</div>
-                                <th scope="row">{{forloop.counter}}</th>
-                                <td>{{orders.dateOfPuja}}</td>
-                                <td>{{orders.pujaName}}</td>
-                                <!-- <td>{{orders.first_name}}</td>
-                                <td>{{orders.last_name}}</td> -->
-                                <td>{{orders.address}}</td>
-                                <td>{{orders.first_name}} {{orders.last_name}}</td>
-                                <td><span name="myUniqueValue">{{orders.bookingDoneAt}}</span></td>
-                                <td>{{orders.total_pay}}</td>
-                                <td><a href="{% url 'updateOrders' orders.id %}" type="submit" name="myEditPuja" value="editPuja" class="btn btn-warning">Edit Order</a></td>
-                                <td><a href="{% url 'deleteOrders' orders.id %}" name="myCancelPuja" value="cancelPuja" class="btn btn-danger">Cancel Order</a></td>
-                            </tr>
-                            {% endfor %}
-                    </tbody>
-                </table>
-            </form>
-                        {% else %}
-                        <tr>
-                            <td colspan="9">
-                                <div class="text-center">
-                                    Sorry, you haven't made any orders yet. Please make orders to see your orders.
-                               </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            {% endif %}
+
+        <div class="container-fluid">
+            <div class="d-flex justify-content-around">
+                <form method="post" action="">{% csrf_token %}
+                    <div class="input-group border px-5 py-3">
+                        <span class="input-group-text">Enter OTP</span>
+                        <input type="number" aria-label="First name" class="form-control" name="mySecreteKey" placeholder="Enter OTP" min="99999" max="1000000">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                    {% for message in messages %}
+                        <div class="text-center text-danger">
+                            {{message}}!!
+                        </div>
+                    {% endfor %}
+                </form>
+            </div>
+
 
         </div>
-
 
        <!-- Footer -->
        <footer class="text-center text-lg-start bg-warning text-muted">
@@ -250,6 +216,6 @@
         <!-- Copyright -->
       </footer>
       <!-- Footer -->
-    
+        
 </body>
 </html>

@@ -85,7 +85,7 @@
             <!-- </form> -->
           </div>
         </div>
-      </nav>   
+    </nav>   
 
       <!-- container and carousel/images -->
 
@@ -514,13 +514,13 @@
                   Pujas
                 </h6>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Mahalaxmi Pooja</a>
+                  <a href="{% url 'book' %}" class="text-reset">Mahalaxmi Pooja</a>
                 </p>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Laxmi Kuber havan</a>
+                  <a href="{% url 'book' %}" class="text-reset">Laxmi Kuber havan</a>
                 </p>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Dusshera</a>
+                  <a href="{% url 'book' %}" class="text-reset">Dusshera</a>
                 </p>
                 <!-- <p style="color:red;">
                   <a href="#!" class="text-reset">Early Marriage/Remove Wedding Obstacles</a>
@@ -535,7 +535,7 @@
                   Main links
                 </h6>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Login/Register</a>
+                  <a href="{% url 'login' %}" class="text-reset">Login/Register</a>
                 </p>
                 <p style="color:red;">
                   <a href="#!" class="text-reset">Temple Services</a>
@@ -544,7 +544,7 @@
                   <a href="#!" class="text-reset">Orders</a>
                 </p>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Help</a>
+                  <a href="{% url 'aboutUs' %}" class="text-reset">Help</a>
                 </p>
               </div>
               <!-- Grid column -->
@@ -558,10 +558,10 @@
                 <p style="color:red;"><i class="fas fa-home me-3"></i> Pune, Maharashtra</p>
                 <p style="color:red;">
                   <i class="fas fa-envelope me-3"></i>
-                  panditmitra@.com
+                  <a class="text-danger" href="mailto:panditmitrateam@gmail.com">panditmitrateam@gmail.com</a>
                 </p>
-                <p style="color:red;"><i class="fas fa-phone me-3"></i> +911234567890</p>
-                <p style="color:red;"><i class="fas fa-print me-3"></i> +910987654321</p>
+                <p style="color:red;"><i class="fas fa-phone me-3"></i><a class="text-danger" href="tel:+911234567890">+911234567890</a></p>
+                <p style="color:red;"><i class="fas fa-print me-3"></i><a class="text-danger" href="tel:+910987654321">+910987654321</a></p>
               </div>
               <!-- Grid column -->
             </div>

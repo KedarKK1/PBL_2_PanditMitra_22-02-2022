@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Book Puja</title>
     <style>
         .card-img-top{
             height: 9rem;
@@ -17,6 +17,9 @@
         }
 
     </style>
+<!-- font awsome link -->
+<script src="https://kit.fontawesome.com/71f1ca357e.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <!-- navbar here -->
@@ -171,13 +174,13 @@
               
               {% for item in items %}
               <div class="col-sx-12 col-sm-6 col-md-4 col-lg-4">
-                <div class="card my-3 mx-2" style="width: 18rem;">
+                <div class="card my-3 " style="width: 18rem;">
                   <div class="card-body">
                     <h5 class="card-title">{{ forloop.counter }}. {{item.nameOfPuja}}</h5>
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                   </div>
                   <img src="{{item.imageUrl}}" class="card-img-top" alt="...">
-                  <a href="{% url 'puja' item.id %}" class="btn btn-primary">BOOK NOW</a>
+                  <a href="{% url 'puja' item.id %}" class="btn btn-primary mx-3 my-1">BOOK NOW</a>
                 </div>
               </div>
               {% endfor %}
@@ -244,13 +247,13 @@
                   Pujas
                 </h6>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Mahalaxmi Pooja</a>
+                  <a href="{% url 'book' %}" class="text-reset">Mahalaxmi Pooja</a>
                 </p>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Laxmi Kuber havan</a>
+                  <a href="{% url 'book' %}" class="text-reset">Laxmi Kuber havan</a>
                 </p>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Dusshera</a>
+                  <a href="{% url 'book' %}" class="text-reset">Dusshera</a>
                 </p>
                 <!-- <p style="color:red;">
                   <a href="#!" class="text-reset">Early Marriage/Remove Wedding Obstacles</a>
@@ -265,7 +268,7 @@
                   Main links
                 </h6>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Login/Register</a>
+                  <a href="{% url 'login' %}" class="text-reset">Login/Register</a>
                 </p>
                 <p style="color:red;">
                   <a href="#!" class="text-reset">Temple Services</a>
@@ -274,7 +277,7 @@
                   <a href="#!" class="text-reset">Orders</a>
                 </p>
                 <p style="color:red;">
-                  <a href="#!" class="text-reset">Help</a>
+                  <a href="{% url 'aboutUs' %}" class="text-reset">Help</a>
                 </p>
               </div>
               <!-- Grid column -->
@@ -285,13 +288,13 @@
                 <h6 class="text-uppercase fw-bold mb-4">
                   Contact
                 </h6>
-                <p style="color:red;"><i class="fas fa-home me-3"></i> Pune Maharashtra</p>
+                <p style="color:red;"><i class="fas fa-home me-3"></i> Pune, Maharashtra</p>
                 <p style="color:red;">
                   <i class="fas fa-envelope me-3"></i>
-                  panditmitra@.com
+                  <a class="text-danger" href="mailto:panditmitrateam@gmail.com">panditmitrateam@gmail.com</a>
                 </p>
-                <p style="color:red;"><i class="fas fa-phone me-3"></i> +911234567890</p>
-                <p style="color:red;"><i class="fas fa-print me-3"></i> +910987654321</p>
+                <p style="color:red;"><i class="fas fa-phone me-3"></i><a class="text-danger" href="tel:+911234567890">+911234567890</a></p>
+                <p style="color:red;"><i class="fas fa-print me-3"></i><a class="text-danger" href="tel:+910987654321">+910987654321</a></p>
               </div>
               <!-- Grid column -->
             </div>
