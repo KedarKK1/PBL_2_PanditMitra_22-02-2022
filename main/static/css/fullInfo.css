@@ -3,6 +3,11 @@ body{
     margin:0;
     /* background-color: #7FFFD4; */
 }
+.bg-myBackground{
+    background-image: url(../image/mybackground1.jpg) !important;
+    /* background-image: url(../static/image/mybackground1.jpg) !important; */
+  }
+
 .myTitle
 {
     color: crimson;

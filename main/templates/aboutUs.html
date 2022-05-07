@@ -12,6 +12,9 @@
 
 <style>
   /*body{background: -webkit-linear-gradient(left, #ffbf00, #ff8000);}*/
+  .bg-myBackground{
+          background-image: url(../static/image/mybackground1.jpg);
+        }
 </style>
 </head>
 <body>
@@ -36,7 +39,7 @@
                         <a class="nav-link " aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'book' %}">Book Pooja/Havan</a>
+                        <a class="nav-link" href="{% url 'book' %}">Book Puja/Havan</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -78,7 +81,7 @@
     </nav>
     <!-- navbar ends here -->
 
-    <div class="container-fluid">
+    <div id="container" class="container-fluid d-none bg-myBackground">
       <div class="row my-3">
 
         <div class="d-flex justify-content-around">
@@ -168,6 +171,12 @@
     </div>
     <!-- container ends here -->
 
+    <div id="spinnerBox" class="text-center">
+      <div class="spinner-border text-warning" role="status">
+        <!-- <span class="sr-only">Loading...</span> -->
+      </div>
+    </div>
+
            <!-- Footer -->
            <footer class="text-center text-lg-start bg-warning text-muted">
             <!-- Section: Social media -->
@@ -217,7 +226,7 @@
                       <i class="fas fa-gem me-3"></i>Panditmitra
                     </h6>
                     <p style="color:red;">
-                      Started in 2022 Panditmitra is an initiative to help people to get pooja samagris and pandit at a single place.
+                      Started in 2022 Panditmitra is an initiative to help people to get puja samagris and pandit at a single place.
                     </p>
                   </div>
                   <!-- Grid column -->
@@ -229,7 +238,7 @@
                       Pujas
                     </h6>
                     <p style="color:red;">
-                      <a href="{% url 'book' %}" class="text-reset">Mahalaxmi Pooja</a>
+                      <a href="{% url 'book' %}" class="text-reset">Mahalaxmi Puja</a>
                     </p>
                     <p style="color:red;">
                       <a href="{% url 'book' %}" class="text-reset">Laxmi Kuber havan</a>
@@ -293,5 +302,31 @@
             <!-- Copyright -->
           </footer>
           <!-- Footer -->
+
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+  const spinnerbox = document.getElementById("spinnerBox");
+  const container = document.getElementById("container");
+  $(document).ready(function() {
+    $.ajax({
+      type:'GET',
+      url:'',
+      success: function(response){
+
+        setTimeout(()=>{
+          // console.log("in success loop"),
+        // spinnerbox.innerHTML = "hi"
+        spinnerbox.classList.add('d-none')
+        container.classList.remove('d-none')
+        }, 500)
+      }
+      // beforeSend:function(response)
+      // {
+      //  spinnerbox.classList.add('d-none'),
+      //  container.classList.remove('d-none')
+      //}
+    });
+  });
+  </script>
 </html>

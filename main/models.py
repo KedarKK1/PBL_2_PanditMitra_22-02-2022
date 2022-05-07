@@ -30,6 +30,17 @@ expertiseField = (
     (''),
 )
 
+panditText = "One of the best Pandit available at panditMitra."
+
+materials = (
+    ('Flowers'),
+    ('Beatle Leaves'),
+    ('Mango Wood Sticks'),
+    ('Aasan'),
+    ('Cotton Wicks'),
+    ('Ghee'),
+
+)
 # our_promise_options=(
 #     ('For financial stability and gain'),
 #     ('Done on friday or other auspicious days according to Nakshatra'),
@@ -46,25 +57,34 @@ expertiseField = (
 # )
 
 
+# class pujaCat(models.Model):
+#     catOfPuja = models.CharField(
+#         primary_key=True, max_length=50)
+
+#     def __str__(self):
+#         return self.catOfPuja
+
+
 class myUser(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     secretKey = models.IntegerField()
+    # isPandit = models.BooleanField('is pandit', default=False)
 
 
 class Puja(models.Model):
     id = models.AutoField(primary_key=True)
     nameOfPuja = models.CharField(max_length=50, unique=True)
     price = models.IntegerField(default=0, validators=[minMax2])
-    panditName = models.CharField(max_length=50, blank=True)
-    # imageURL textfield
+    # panditName = models.CharField(max_length=50, blank=True)    # imageURL textfield
     imageUrl = models.TextField(
         default="https://image.shutterstock.com/image-vector/vector-graphic-illustration-indian-pandit-260nw-1803127855.jpg", null=True, blank=True)
     # expertiseIn = models.Charfield(max_length=10, choices=expertiseField)
     introText = models.CharField(max_length=200, null=True, blank=True)
     discription = models.TextField(null=True, blank=True)
+    # materials_provided = models.TextField(default=materials)
     # key_insights
     # our_promise = model
     # categories (Remove Late marriage/Wedding Obstacles) Puja,(Property/Legal/Court Cases) Shanti Puja,Sarpa Dosha Pooja,Swastha Sampanna Puja,Dussera,Laxmi Kubera,Mahalaxmi
@@ -72,23 +92,6 @@ class Puja(models.Model):
     def __str__(self):
         return self.nameOfPuja
         # return "{}.{}".format(self.id, self.nameOfPuja)
-
-
-class Pandit(models.Model):
-    id = models.AutoField(primary_key=True)
-    imageUrl = models.TextField(verbose_name="Pandit Img Url", max_length=2000)
-    # imageUrl = models.URLField(verbose_name="Pandit Img Url", max_length=2000)
-    # nameOfPandit = models.ForeignKey(Puja, blank=True)
-    nameOfPandit = models.CharField(max_length=50)
-    experience = models.IntegerField(default=0, validators=[minMax])
-    panditDescription = models.TextField(null=True, blank=True)
-    # pujaName = models.ForeignKey(Puja, on_delete=models.CASCADE)
-    # expertiseIn = forms.ChoiceField(
-    #     choices=expertise_choices, widget=forms.RadioSelect())
-#   expertiseIn = models.CharFiels(max_length=200) fields add karni hai
-
-    def __str__(self):
-        return self.nameOfPandit
 
 
 class Order(models.Model):
@@ -111,6 +114,27 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.pujaName} on {self.dateOfPuja} at {self.address}"
+
+
+class Pandit(models.Model):
+    id = models.AutoField(primary_key=True)
+    imageUrl = models.TextField(verbose_name="Pandit Img Url", max_length=2000)
+    # imageUrl = models.URLField(verbose_name="Pandit Img Url", max_length=2000)
+    # nameOfPandit = models.ForeignKey(Puja, blank=True)
+    nameOfPandit = models.CharField(max_length=50)
+    experience = models.IntegerField(default=0, validators=[minMax])
+    pujaNames = models.ManyToManyField(
+        Puja, related_name="pujaNames1", blank=True, default=None)
+    panditDescription = models.TextField(default=panditText)
+    # pujaAssigned = models.ManyToManyField(
+    #     Order,blank=True, null=True, default=None, related_name="pujas" )
+    # pujaName = models.ForeignKey(Puja, on_delete=models.CASCADE)
+    # expertiseIn = forms.ChoiceField(
+    #     choices=expertise_choices, widget=forms.RadioSelect())
+#   expertiseIn = models.CharFiels(max_length=200) fields add karni hai
+
+    def __str__(self):
+        return self.nameOfPandit
 
 
 class Reviews(models.Model):

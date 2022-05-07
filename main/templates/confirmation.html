@@ -7,6 +7,11 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+      .bg-myBackground{
+          background-image: url(../static/image/mybackground1.jpg);
+        }
+    </style>
 
 </head>
 <body>
@@ -44,7 +49,7 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'book' %}">Book Pooja/Havan</a>
+                    <a class="nav-link" href="{% url 'book' %}">Book Puja/Havan</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'myOrders' %}">My orders</a>
@@ -72,7 +77,7 @@
             </div>
           </nav>   
 
-        <div class="container-fluid">
+        <div class="container-fluid bg-myBackground">
             <div class="d-flex justify-content-around">
                 <form method="post" action="">{% csrf_token %}
                     <div class="input-group border px-5 py-3">
@@ -140,7 +145,7 @@
                   <i class="fas fa-gem me-3"></i>Panditmitra
                 </h6>
                 <p style="color:red;">
-                  Started in 2022 Panditmitra is an initiative to help people to get pooja samagris and pandit at a single place.
+                  Started in 2022 Panditmitra is an initiative to help people to get puja samagris and pandit at a single place.
                 </p>
               </div>
               <!-- Grid column -->
@@ -152,7 +157,7 @@
                   Pujas
                 </h6>
                 <p style="color:red;">
-                  <a href="{% url 'book' %}" class="text-reset">Mahalaxmi Pooja</a>
+                  <a href="{% url 'book' %}" class="text-reset">Mahalaxmi Puja</a>
                 </p>
                 <p style="color:red;">
                   <a href="{% url 'book' %}" class="text-reset">Laxmi Kuber havan</a>

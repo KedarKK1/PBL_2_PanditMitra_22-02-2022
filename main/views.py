@@ -128,6 +128,15 @@ def signUp(request):
     else:
         return render(request, "signup.html", {})
 
+# def panditLogin(request):
+    # return render(request, "panditLogin.html", {})
+
+
+def sortBook(request, nameOfPuja):
+    ls = Puja.objects.filter(nameOfPuja=nameOfPuja)
+    print(ls)
+    return render(request, "book.html", {})
+
 
 def reviews(response):
     return render(response, "chooseReview.html", {})
@@ -263,7 +272,7 @@ def order(request, id):
         myOrder.save()
         messages.info(request, 'Order successfully created')
         # for redirecting to myOrders page
-        return redirect("/myOrders")
+        return redirect("payment")
         # return redirect(request.path)  # for redirecting to same page
         # return redirect("/")
         # return redirect("/puja/:<id>/order")
@@ -278,6 +287,11 @@ def order(request, id):
         # myPuja = Puja.objects.all()
         return render(request, "order.html", {"ls": ls})
         # return render(request, "order.html", {"myPuja": myPuja, "ls": ls})
+
+
+@login_required
+def payment(response):
+    return render(response, "upi.html", {})
 
 
 @login_required
@@ -360,6 +374,12 @@ def deleteOrders(request, pk):
 def pandit(response):
     # sortByField
     panditList = Pandit.objects.all()
+    # print()
+    pandits = Pandit.objects.all().values('panditDescription')
+    #   <!-- since we have to  show manytomany fields we use this format to show it -->
+    #   note that pujaName is a queryset as it is manytomany fields so we have to parse it in jinja template
+    print((pandits))
+
     return render(response, "pandit.html", {"panditList": panditList})
 
 

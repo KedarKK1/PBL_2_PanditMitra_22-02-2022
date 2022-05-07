@@ -9,6 +9,18 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/fullInfo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+     <script src="https://kit.fontawesome.com/71f1ca357e.js" crossorigin="anonymous"></script>
+<style>
+  .divider2{
+    width: 100%;
+    height: 20px;
+    background: url("https://epuja.co.in/img/diwali/divider.png") repeat-x top center;
+    position: absolute;
+    left: 0;
+  }
+</style>
+    
 </head>
 <body >
     <!-- navbar here -->
@@ -45,7 +57,7 @@
                 <a class="nav-link " aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="{% url 'book' %}">Book Pooja/Havan</a>
+                <a class="nav-link active" href="{% url 'book' %}">Book Puja/Havan</a>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
@@ -87,11 +99,17 @@
         </div>
     </nav>   
 
+    <div id="spinnerBox" class="text-center my-3">
+      <div class="spinner-border text-warning" role="status">
+        <!-- <span class="sr-only">Loading...</span> -->
+      </div>
+    </div>
       <!-- container and carousel/images -->
 
-      <div class="container-fluid mt-2">
+    
+      <div id="mycontainer" class="d-none container-fluid bg-myBackground">
         <!-- breadcrumb here -->
-        <nav aria-label="breadcrumb " class="giveBg">
+        <nav aria-label="breadcrumb " class="giveBg pt-3">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
             <li class="breadcrumb-item"><a href="{% url 'book' %}">Puja</a></li>
@@ -105,7 +123,7 @@
         <div class="row">
           <div class="col-md-5">
             <figure class="figure">
-              <img src="{{ls.imageUrl}}" class="figure-img img-fluid rounded" alt="...">
+              <img src="{{ls.imageUrl}}" class="figure-img img-fluid rounded " style="min-height:50vh; max-height:60vh;min-width:30vw;max-width:40vw;" alt="...">
               <figcaption class="figure-caption text-end">{{ls.nameOfPuja}}</figcaption>
             </figure>
             <!-- <img class="border1" src="http://nagpurtoday.in/wp-content/uploads/2013/09/Mahalaxmi-532x400.jpg" alt="mahalaxmi_image" width="400"> -->
@@ -138,9 +156,9 @@
                   <ul>
                     <li>Vedic pathshala certified Pandits</li>
                     <li>All pure ingredients used</li>
-                    <li>On-time punctual poojas</li>
+                    <li>On-time punctual pujas</li>
                     <li>Professional guidance and support</li>
-                    <li>Custom changes to pooja are always Welcomed</li>
+                    <li>Custom changes to puja are always Welcomed</li>
                   </ul>
 
                 </div>
@@ -157,248 +175,49 @@
                   <option value="2">Kothrud</option>
                   <option value="3">Pimpri-Chinchawad</option>
                 </select>                 -->
-                <a href="order" class="btn btn-success mt-2">Book pooja</a>
+                <a href="order" class="btn btn-success mt-2">Book puja</a>
               </div>
             </div>
           </div>
         </div>
 
-        <hr>
+        <div class="divider2 mt-3"></div>
+        <!-- <hr> -->
 
-        <div class="row px-2 py-2">
-          <!-- <ul class="nav nav-tabs justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#Description">Description</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#Review">Review</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#FAQ">FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="#WRITEREVIEW" tabindex="-1" aria-disabled="true">Write a review</a>
-            </li>
-          </ul> -->
-          <!-- <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
-            <h4 id="Description">Description</h4>
-            <p>Mahalaxmi Puja is performed for Goddess Laxmi, the consort of Lord Vishnu is a manifestation of wealth, fortune, and prosperity. People who are involved in business or people who are facing financial problems may perform this puja to receive the blessings and grace of Goddess Laxmi and attain high revenues & profitability in business.
-
-              This puja is performed by invoking Goddess Laxmi followed by chanting Laxmi Mantra and then performing the Puja to receive Goddess Laxmi’s blessings.
-              
-              When to Perform Mahalaxmi Puja?
-              Schedule the Puja date as per the Janma Nakshatra of a person and by considering the Yoga, and Thithi of that particular date.
-              Diwali, Dhanteras, Akshaya Tritiya, Fridays are considered auspicious times to perform Puja.
-            </p>
-            <h4 id="Review">Review</h4>
-            <p>The entire process of booking till execution was very well organised and explained to us each and everything puja performed. I really Appreciate the Harivara team for making my pooja easy and extremely flourished with lords presence. Thank you team PanditMitra
-            </p>
-            <h4 id="FAQ">FAQ</h4>
-            <p><ol><li>Can I pay a Partial amount in advance to confirm the Puja and pay the balance as cash or pay online after the Puja?</li> 
-              Ans:-Yes, you can pay the partial amount as a token advance to confirm your booking. You can pay the balance amount after the Puja with cash directly to our Priests or through an Online transfer (Click on the “Pay-Balance” button in your My-Account section corresponding to your order number).
-              <li>How Long does the Puja take to complete?</li>
-              Ans:- Pujas are typically performed for 1 to 3+ hours at the same time it also depends on the package selected for the Puja.
-            </ol></p>
-            <h4 id="WRITEREVIEW">WRITE A REVIEW</h4>
-            <p>
-              <div class="input-group border px-5 py-3">
-                <span class="input-group-text">First and last name</span>
-                <input type="text" aria-label="First name" class="form-control">
-                <input type="text" aria-label="Last name" class="form-control">
-                <div class="input-group mt-3">
-                  <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-                  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                  <select class="form-select mt-3" aria-label="Default select example" required>
-                    <option selected >Select Rating</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select> 
-                </div>
-                <div class="input-group mt-3">
-                  <span class="input-group-text">Write your Review</span>
-                  <textarea class="form-control" aria-label="With textarea"></textarea>
-                </div>
-              </div>
-            </p>
-          </div> -->
-<!-- Tabs navs -->
-<!-- <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a
-      class="nav-link active"
-      id="ex2-tab-1"
-      data-mdb-toggle="tab"
-      href="#ex2-tabs-1"
-      role="tab"
-      aria-controls="ex2-tabs-1"
-      aria-selected="true"
-      >Description</a
-    >
-  </li>
-  <li class="nav-item" role="presentation">
-    <a
-      class="nav-link"
-      id="ex2-tab-2"
-      data-mdb-toggle="tab"
-      href="#ex2-tabs-2"
-      role="tab"
-      aria-controls="ex2-tabs-2"
-      aria-selected="false"
-      >Review</a
-    >
-  </li>
-  <li class="nav-item" role="presentation">
-    <a
-      class="nav-link"
-      id="ex2-tab-3"
-      data-mdb-toggle="tab"
-      href="#ex2-tabs-3"
-      role="tab"
-      aria-controls="ex2-tabs-3"
-      aria-selected="false"
-      >FAQ</a
-    >
-  </li>
-</ul> -->
-<!-- Tabs navs -->
-
-<!-- Tabs content -->
-<!-- <div class="tab-content" id="ex2-content">
-  <div
-    class="tab-pane fade show active"
-    id="ex2-tabs-1"
-    role="tabpanel"
-    aria-labelledby="ex2-tab-1"
-  >
-    Tab 1 content
-  </div>
-  <div
-    class="tab-pane fade"
-    id="ex2-tabs-2"
-    role="tabpanel"
-    aria-labelledby="ex2-tab-2"
-  >
-    Tab 2 content
-  </div>
-  <div
-    class="tab-pane fade"
-    id="ex2-tabs-3"
-    role="tabpanel"
-    aria-labelledby="ex2-tab-3"
-  >
-    Tab 3 content
-  </div>
-</div> -->
-<!-- Tabs content -->
-
-<!-- Tabs navs -->
-<!-- Tabs navs -->
-            <!-- <div class="row">
-            <div class="col-3">
-                <div
-                class="nav flex-column nav-tabs text-center"
-                id="v-tabs-tab"
-                role="tablist"
-                aria-orientation="vertical"
-                >
-                <a
-                    class="nav-link active"
-                    id="v-tabs-home-tab"
-                    data-mdb-toggle="tab"
-                    href="#v-tabs-home"
-                    role="tab"
-                    aria-controls="v-tabs-home"
-                    aria-selected="true"
-                    >Home</a
-                >
-                <a
-                    class="nav-link"
-                    id="v-tabs-profile-tab"
-                    data-mdb-toggle="tab"
-                    href="#v-tabs-profile"
-                    role="tab"
-                    aria-controls="v-tabs-profile"
-                    aria-selected="false"
-                    >Profile</a
-                >
-                <a
-                    class="nav-link"
-                    id="v-tabs-messages-tab"
-                    data-mdb-toggle="tab"
-                    href="#v-tabs-messages"
-                    role="tab"
-                    aria-controls="v-tabs-messages"
-                    aria-selected="false"
-                    >Messages</a
-                >
-                </div>
-            </div>
-
-            <div class="col-9">
-                <div class="tab-content" id="v-tabs-tabContent">
-                <div
-                    class="tab-pane fade show active"
-                    id="v-tabs-home"
-                    role="tabpanel"
-                    aria-labelledby="v-tabs-home-tab"
-                >
-                    Home content
-                </div>
-                <div
-                    class="tab-pane fade"
-                    id="v-tabs-profile"
-                    role="tabpanel"
-                    aria-labelledby="v-tabs-profile-tab"
-                >
-                    Profile content
-                </div>
-                <div
-                    class="tab-pane fade"
-                    id="v-tabs-messages"
-                    role="tabpanel"
-                    aria-labelledby="v-tabs-messages-tab"
-                >
-                    Messages content
-                </div>
-                </div>
-            </div>
-            </div> -->
-
+        <div class="row mt-3 px-5 pt-4 pb-2">
             <div class="row px-2 py-2">
                 <ul class="nav nav-tabs justify-content-center">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#Description">Description</a>
+                    <a class="nav-link" id="description1" aria-current="page" href="#Description" onclick="makeActive1()">Description</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#Samagree">Material Provided</a>
+                    <a class="nav-link" id="samagree" href="#Samagree" onclick="makeActive2()">Material Provided</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#FAQ">FAQ</a>
+                    <a class="nav-link" id="faq" href="#FAQ" onclick="makeActive3()">FAQ</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link " href="#WRITEREVIEW" tabindex="-1" aria-disabled="true">Write a review</a>
+                    <a class="nav-link " id="writeRev" href="#WRITEREVIEW" tabindex="-1" aria-disabled="true" onclick="makeActive4()">Write a review</a>
                   </li>
                 </ul>
                 <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
-                  <h4 id="Description">Description</h4>
+                  <h4 id="Description" class="mt-3 mb-2">Description</h4>
                   {{ls.discription}}
-                  <h4 id="Samagree">Material Provided</h4>
+                  <h4 id="Samagree" class="mt-5 mb-2">Material Provided</h4>
                   <ul>
                     <li>Flowers</li>
                     <li>Beatle Leaves</li>
                     <li>Ghee</li>
                     <li>Woods</li>
                   </ul>
-                  <h4 id="FAQ">FAQ</h4>
+                  <h4 id="FAQ" class="mt-5 mb-2">FAQ</h4>
                   <p><ol><li>Can I pay a Partial amount in advance to confirm the Puja and pay the balance as cash or pay online after the Puja?</li> 
                     Ans:-Yes, you can pay the partial amount as a token advance to confirm your booking. You can pay the balance amount after the Puja with cash directly to our Priests or through an Online transfer (Click on the “Pay-Balance” button in your My-Account section corresponding to your order number).
                     <li>How Long does the Puja take to complete?</li>
                     Ans:- Pujas are typically performed for 1 to 3+ hours. At the same time it also depends on the package selected for the Puja.
                   </ol></p>
-                  <h4 id="WRITEREVIEW">WRITE A REVIEW/FEEDBACK</h4>
+                  <h4 class='mt-5' name="WRITEREVIEW" id="WRITEREVIEW">WRITE A REVIEW/FEEDBACK<a id="WRITEREVIEW2" name="WRITEREVIEW2"></a>
+                  </h4>
                   <p>
                   <form method="post" action="" autocomplete="off">{% csrf_token %}
                     <div class="input-group border px-5 py-3">
@@ -450,7 +269,8 @@
               </div>
             </div> -->
         </div>
-    </div>
+      </div>
+    
 
 
        <!-- Footer -->
@@ -502,7 +322,7 @@
                   <i class="fas fa-gem me-3"></i>Panditmitra
                 </h6>
                 <p style="color:red;">
-                  Started in 2022 Panditmitra is an initiative to help people to get pooja samagris and pandit at a single place.
+                  Started in 2022 Panditmitra is an initiative to help people to get puja samagris and pandit at a single place.
                 </p>
               </div>
               <!-- Grid column -->
@@ -514,7 +334,7 @@
                   Pujas
                 </h6>
                 <p style="color:red;">
-                  <a href="{% url 'book' %}" class="text-reset">Mahalaxmi Pooja</a>
+                  <a href="{% url 'book' %}" class="text-reset">Mahalaxmi Puja</a>
                 </p>
                 <p style="color:red;">
                   <a href="{% url 'book' %}" class="text-reset">Laxmi Kuber havan</a>
@@ -581,4 +401,70 @@
 
       
 </body>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+  const spinnerbox = document.getElementById("spinnerBox");
+  const container = document.getElementById("mycontainer");
+  const element1 = document.getElementById("description1");
+  const element2 = document.getElementById("samagree");
+  const element3 = document.getElementById("faq");
+  const element4 = document.getElementById("writeRev");
+
+  {% comment %} element`${j}`.onclick = function(){
+      for (var i = 0; i <4; i++ && i != j) {
+        element`${i}`.classList.remove("active");
+      }
+      element`${j}`.classList.add("active");
+  } {% endcomment %}
+
+  
+
+  function makeActive1(){
+    element1.classList.add("active");
+    element2.classList.remove("active");
+    element3.classList.remove("active");
+    element4.classList.remove("active");
+  }
+  function makeActive2(){
+    element2.classList.add("active");
+    element1.classList.remove("active");
+    element3.classList.remove("active");
+    element4.classList.remove("active");
+    
+  }
+  function makeActive3(){
+    element3.classList.add("active");
+    element2.classList.remove("active");
+    element1.classList.remove("active");
+    element4.classList.remove("active");
+  }
+  function makeActive4(){
+    element4.classList.add("active");
+    element2.classList.remove("active");
+    element3.classList.remove("active");
+    element1.classList.remove("active");
+  }
+  $(document).ready(function() {
+    $.ajax({
+      type:'GET',
+      url:'',
+      success: function(response){
+
+        setTimeout(()=>{
+          // console.log("in success loop"),
+        // spinnerbox.innerHTML = "hi"
+        spinnerbox.classList.add('d-none')
+        container.classList.remove('d-none')
+        }, 500)
+      }
+      // beforeSend:function(response)
+      // {
+      //  spinnerbox.classList.add('d-none'),
+      //  container.classList.remove('d-none')
+      //}
+    });
+  });
+  </script>
+
 </html>
