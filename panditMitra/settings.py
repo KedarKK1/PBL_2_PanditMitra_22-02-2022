@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'panditMitra.urls'
+ROOT_URLCONF = 'panditMitra.panditMitra.urls'
 
 TEMPLATES = [
     {
