@@ -73,6 +73,12 @@ class myUser(models.Model):
     secretKey = models.IntegerField()
     # isPandit = models.BooleanField('is pandit', default=False)
 
+class materialProvided(models.Model):
+    id = models.AutoField(primary_key=True)
+    materialName = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.materialName
 
 class Puja(models.Model):
     id = models.AutoField(primary_key=True)
@@ -88,10 +94,21 @@ class Puja(models.Model):
     # key_insights
     # our_promise = model
     # categories (Remove Late marriage/Wedding Obstacles) Puja,(Property/Legal/Court Cases) Shanti Puja,Sarpa Dosha Pooja,Swastha Sampanna Puja,Dussera,Laxmi Kubera,Mahalaxmi
+    categories = models.CharField(max_length=50, blank=True, default="")
+    subCategories = models.CharField(max_length=50, blank=True, default="")
 
     def __str__(self):
         return self.nameOfPuja
         # return "{}.{}".format(self.id, self.nameOfPuja)
+
+
+class myPujaNnames(models.Model):
+    id = models.AutoField(primary_key=True)
+    pujassName = models.ManyToManyField(
+        Puja, verbose_name="Puja names", blank=True)
+
+    def __str__(self):
+        return self.pujassName
 
 
 class Order(models.Model):
@@ -126,8 +143,9 @@ class Pandit(models.Model):
     pujaNames = models.ManyToManyField(
         Puja, related_name="pujaNames1", blank=True, default=None)
     panditDescription = models.TextField(default=panditText)
-    # pujaAssigned = models.ManyToManyField(
-    #     Order,blank=True, null=True, default=None, related_name="pujas" )
+    pujaAssigned = models.ManyToManyField(
+        Order, blank=True, default=None, related_name="pujas")
+    # pujaName = models.ForeignKey(Puja, on_delete=models.CASCADE)
     # pujaName = models.ForeignKey(Puja, on_delete=models.CASCADE)
     # expertiseIn = forms.ChoiceField(
     #     choices=expertise_choices, widget=forms.RadioSelect())

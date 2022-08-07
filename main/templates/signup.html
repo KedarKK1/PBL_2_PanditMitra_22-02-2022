@@ -126,10 +126,10 @@
 
                           <div class="">
 
-                              <h2 class="fw-bold mb-2 text-uppercase">Signup</h2>
+                              <h2 class="fw-bold mb-2 text-uppercase">Sign up</h2>
                               <p class="text-white-50">Create an account here!</p>
 
-                            <form method="post" action="">{% csrf_token %}
+                            <form method="post" action="" autocomplete="off">{% csrf_token %}
                               <div class="form-outline form-white mb-4">
                                   <label class="form-label" for="typeEmailX">Enter Username</label>
                                   <input type="text" name="uname" id="" class="form-control form-control-lg" />
@@ -168,6 +168,11 @@
                               <button class="btn btn-outline-light btn-lg px-5 my-3" type="submit">Register</button>
                             </form>
                             <p class="mb-0">Already have an account? <a href="{% url 'login' %}" class="text-white"><u>Login</u></a></p>
+                            {% for message in messages %}
+                              <div class="text-center text-danger">
+                                  {{message}}!!
+                              </div>
+                            {% endfor %}
                           </div>
 
                       </div>

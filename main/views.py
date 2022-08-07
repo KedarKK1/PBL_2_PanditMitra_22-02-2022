@@ -128,13 +128,62 @@ def signUp(request):
     else:
         return render(request, "signup.html", {})
 
-# def panditLogin(request):
-    # return render(request, "panditLogin.html", {})
+
+def panditLogin(request):
+    ls = Order.objects.all()
+    return render(request, "panditLogin.html", {"assignedOrders": ls})
+
+
+@login_required
+def changeCredentials(request, id):
+    if request.method == 'POST':
+        newUName = request.POST.get('newuname')
+        newemail = request.POST.get('newemail')
+        newpassword = request.POST.get('newpassword')
+        newpassword1 = request.POST.get('newpassword1')
+        # ls3 = myUser.objects.get(User.objects.get(id=id).username=ls.username)
+        ls = User.objects.get(id=id)
+        if newpassword == newpassword1:
+            # if User.objects.filter(username=newUName).exists():
+            #     print("Username already exists")
+            #     messages.info(request, 'Username already exists')
+            #     return redirect(request.path)
+            # elif User.objects.filter(email=newemail).exists():
+            #     print("Email already exists")
+            #     messages.info(request, 'Email already exists')
+            #     return redirect(request.path)
+            # else:
+            # ls.username = newUName
+            # ls.email = newemail
+            # ls.password = newpassword
+            User.objects.filter(id=id).update(
+                username=newUName, email=newemail)
+            # User.objects.filter(id=id).update(
+            #     username=newUName, email=newemail, password=newpassword)
+            # print(User.objects.get(id=id))
+            # ls3.username = newUName
+            # ls3.email = newemail
+            # ls3.save()
+            # ls3.password = newpassword
+            # print(newUName, newemail, newpassword, newpassword1)
+            return redirect("home")
+        else:
+            return redirect(request.path)
+    else:
+        ls = User.objects.get(id=id)
+        return render(request, "changeCredentials.html", {"ls": ls})
 
 
 def sortBook(request, nameOfPuja):
-    ls = Puja.objects.filter(nameOfPuja=nameOfPuja)
-    print(ls)
+    allPuja = []
+    catPuja = Puja.objects.values('category', 'id')
+    cats = {item['catPuja'] for item in catPuja}
+    for item in cats:
+        prods = Puja.objects.filter(category=cats)
+        allPuja.append(prods)
+    print(allPuja)
+    # ls = Puja.objects.filter(nameOfPuja=nameOfPuja)
+    # print(ls)
     return render(request, "book.html", {})
 
 

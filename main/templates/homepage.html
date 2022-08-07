@@ -60,10 +60,19 @@
 
         .divider2{
           width: 100%;
-          height: 20px;
+          height: 20p15vx;
           background: url("https://epuja.co.in/img/diwali/divider.png") repeat-x top center;
           position: absolute;
           left: 0;
+        }
+
+        .myborders{
+          margin-top: 15vh;
+          margin-bottom: 5vh;
+          border: 25px solid transparent;
+          padding: 15px;
+          border-image: url("https://www.w3schools.com/cssref/border.png") 30 stretch;
+          /*border-image: url("https://www.w3schools.com/cssref/border.png") 30 round;*/
         }
         
 
@@ -75,7 +84,12 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -124,6 +138,16 @@
                     <a class="nav-link d-flex">
                         <span class="text-warning" >{{user.username}}</span>
                     </a>
+                    <li class="nav-item dropdown d-flex">
+                      <a class="nav-link dropdown-toggle text-warning" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Settings</a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'change_credentials' user.id %}">Change Usernsme/email</a>
+                        <a class="dropdown-item" href="#">Change Password</a>
+                        <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                        <!-- <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a> -->
+                      </div>
+                    </li>
                     <a class="nav-link d-flex" href="{% url 'logout' %}">
                         <button class="btn btn-outline-warning" type="submit">Logout</button>
                     </a>
@@ -198,12 +222,12 @@
                   </div>
             <!-- <div class="divider"></div> -->
             <div class="divider2"></div>
-            <div class="mt-3 py-4 px-4">
-              <p class="text-center"><em><b>We provide online puja booking and astrology consultancy services in India. Panditmitra.com has a group of best pandit and Vedic Astrologer in India. Call us for any customised puja & astrological consultation.</p></b></em>
-              <p style="text-shadow: 2px 2px 5px red;">Panditmitra is the most trusted online puja booking platform for Hindu puja service, Vedic Rituals, Religious Ceremonies and Astrology Services. We provide the India’s well-known and experienced Pandits and Shastris for you who will come to your house and do the puja. We also provide temple services. Our services also include online puja samagri or puja items which are required for the selected puja.</p>
-              <p>Panditmitra covers major rituals that include the Havan, Shanti Vidhi, Wedding Ceremony, Satyanarayan Katha, Griha pravesh, Namkaran Sanskar or naming ceremony, Nava Graha Shanti, Sakharpude or engagement, Laxmi puja, thread ceremony or Maunji Bandhan, Ganesh puja, Annaprashan, Ramayan, Mundan, Bhagwat katha, Vastu Shanti puja, Holika puja, Dusshera puja etc.</p>
-              <p>We also provide the best devotional offering made to God<em>(Prasad)</em>.</p>
-              You will also get to know more about the puja you have selected from the website and about the Hindu rituals on this website.</p>
+            <div class="mt-3 py-4 px-4 myborders">
+              <p class="text-center" style="font-size:25px;"><em><b>We provide online puja booking and astrology consultancy services in India. Panditmitra.com has a group of best pandit and Vedic Astrologer in India. Call us for any customised puja & astrological consultation.</p></b></em>
+              <p style="text-shadow: 2px 2px 5px red;font-size:18px;">Panditmitra is the most trusted online puja booking platform for Hindu puja service, Vedic Rituals, Religious Ceremonies and Astrology Services. We provide the India’s well-known and experienced Pandits and Shastris for you who will come to your house and do the puja. We also provide temple services. Our services also include online puja samagri or puja items which are required for the selected puja.</p>
+              <p style="font-size:18px;">Panditmitra covers major rituals that include the Havan, Shanti Vidhi, Wedding Ceremony, Satyanarayan Katha, Griha pravesh, Namkaran Sanskar or naming ceremony, Nava Graha Shanti, Sakharpude or engagement, Laxmi puja, thread ceremony or Maunji Bandhan, Ganesh puja, Annaprashan, Ramayan, Mundan, Bhagwat katha, Vastu Shanti puja, Holika puja, Dusshera puja etc.</p>
+              <p style="font-size:18px;">We also provide the best devotional offering made to God<em>(Prasad)</em>.</p>
+              <p style="font-size:18px;">You will also get to know more about the puja you have selected from the website and about the Hindu rituals on this website.</p>
          
             </div>
             <!-- <div class="divider2"> -->
@@ -222,7 +246,7 @@
 
             <!-- cards here -->
             <div class="row recent px-3 my-3 py-2 ">
-                <div class="col-sm-3 col-md-3">
+                <div class="col-12 col-sm-6 col-md-3">
                     <div class="card" style="width: 16rem;background:#fdfad6;">
                         <div class="card-body">
                           <h5 class="card-title"><B>LAXMI PUJAN</B></h5>
@@ -233,7 +257,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 col-md-3">
+                <div class="col-12 col-sm-6 col-md-3">
                     <div class="card" style="width: 16rem;background:#fdfad6;">      
                         <div class="card-body">
                           <h5 class="card-title"><B>SARASWATI HAVAN</B></h5>
@@ -245,7 +269,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 col-md-3">
+                <div class="col-12 col-sm-6 col-md-3">
                     <div class="card" style="width: 16rem;background:#fdfad6;">
                         <div class="card-body">
                           <h5 class="card-title"><B>DUSSEHRA</B></h5>
@@ -256,7 +280,7 @@
                         </div>
                       </div>
                 </div>
-                <div class="col-sm-3 col-md-3">
+                <div class="col-12 col-sm-6 col-md-3">
                     <div class="card" style="width: 16rem;background:#fdfad6;">
                         <div class="card-body">
                           <h5 class="card-title"><B>GRAHA SHANTI PUJA</B></h5>
