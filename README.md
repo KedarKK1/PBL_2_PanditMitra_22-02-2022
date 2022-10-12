@@ -1,8 +1,7 @@
-# PBL_2_PanditMitra_22-02-2022
+# <u>PBL_2_PanditMitra_22-02-2022</u>
 
-# ClashRCRound2Backend
 
-## Click on "code" button and click on "download as zip"
+## Click on green colored "code" button on top left of folders & click on "download as zip"
 
 ## Clone the project onto your local Machine
 
@@ -11,3 +10,5 @@
 Run this application by command:
 
 	python manage.py runserver
+
+make sure you have django(4.0) installed on your device

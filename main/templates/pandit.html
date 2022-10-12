@@ -110,7 +110,7 @@
                           <h5 class="card-title">{{forloop.counter}}. {{pandits.nameOfPandit}}</h5>
                           <p class="card-text">{{pandits.panditDescription}}</p>
                           <!-- since we have to  show manytomany fields we use this format to show it -->
-                          Expertise In: <b>{% for items in pandits.pujaNames.all %} {{items.nameOfPuja}},{% endfor %}</b> <br>
+                          Expertise In: <b>{% for items in pandits.all %} {{items.nameOfPuja}},{% endfor %}</b> <br>
                           Experience: {{pandits.experience}} years
                         </div>
 

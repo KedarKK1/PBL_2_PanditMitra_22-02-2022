@@ -126,8 +126,7 @@ class Pandit(models.Model):
     pujaNames = models.ManyToManyField(
         Puja, related_name="pujaNames1", blank=True, default=None)
     panditDescription = models.TextField(default=panditText)
-    # pujaAssigned = models.ManyToManyField(
-    #     Order,blank=True, null=True, default=None, related_name="pujas" )
+    # pujaAssigned = models.ManyToManyField(Order,blank=True, default=None, related_name="pujas" )
     # pujaName = models.ForeignKey(Puja, on_delete=models.CASCADE)
     # expertiseIn = forms.ChoiceField(
     #     choices=expertise_choices, widget=forms.RadioSelect())
