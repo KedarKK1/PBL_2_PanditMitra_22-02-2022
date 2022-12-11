@@ -1,5 +1,7 @@
 # <u>Second Year Project - PanditMitra - Website for booking pandit for an auspicious pooja</u>
-
+## Contributors 😎 <p align="center"> 
+<a href="https://github.com/KedarKK1/PBL_2_PanditMitra_22-02-2022/graphs/contributors"> <img src="https://contrib.rocks/image?repo=KedarKK1/PBL_2_PanditMitra_22-02-2022" /> </a> 
+</p>
 
 ## Click on green colored "code" button on top left of folders & click on "download as zip"
 
