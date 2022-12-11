@@ -1,4 +1,4 @@
-# <u>Second Year Project - PanditMitra - Website for booking pandit for an auspacious pooja</u>
+# <u>Second Year Project - PanditMitra - Website for booking pandit for an auspicious pooja</u>
 
 
 ## Click on green colored "code" button on top left of folders & click on "download as zip"
